@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEYRA - OnlyFans Management Agency</title>
+  <meta name="description" content="Take your OnlyFans career to the next level. Maximize your growth and unlock your full earning potential with VEYRA Management Agency.">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VEYRA - OnlyFans Management Agency">
+  <meta property="og:description" content="Take your OnlyFans career to the next level. Maximize your growth and unlock your full earning potential.">
+  <meta property="og:image" content="./guide/model.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VEYRA - OnlyFans Management Agency">
+  <meta name="twitter:description" content="Take your OnlyFans career to the next level. Maximize your growth and unlock your full earning potential.">
+  <meta name="twitter:image" content="./guide/model.png">
+  
+  <style>
+    /* 
+    ===== QUICK-EDIT GUIDE =====
+    Main sections: Hero, FAQ, About, Footer
+    Key CSS variables in :root to customize:
+    --bg (background), --panel (modal bg), --text (main text), --gold (accent), --maxw (max width)
+    */
+    
+    :root { 
+      --bg: #000; 
+      --panel: rgba(10,10,10,.95); 
+      --text: #e9e4d8; 
+      --muted: rgba(233,228,216,.75); 
+      --border: rgba(120,120,120,.35); 
+      --gold: #d4af37; 
+      --maxw: 960px; 
+      --shadow: 0 10px 30px rgba(0,0,0,.5); 
+    }
+    
+    * { box-sizing: border-box; }
+    
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      padding: 0;
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      min-height: 92dvh;
+      min-height: 92vh; /* fallback */
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: radial-gradient(80% 60% at 50% 10%, rgba(212,175,55,.10), transparent);
+    }
+    
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: url('./public/model.png') center/cover no-repeat;
+      opacity: .78;
+      filter: saturate(105%);
+    }
+    
+    .hero:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(45deg, rgba(0,0,0,.82), rgba(0,0,0,.5) 30%, rgba(0,0,0,.82));
+    }
+    
+    .badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .badge img {
+      height: 56px;
+      width: 56px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 22px rgba(212,175,55,.55));
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+    
+    .brand {
+      letter-spacing: .35em;
+      font-size: clamp(12px, 3vw, 14px);
+      color: var(--gold);
+      margin-top: 10px;
+      font-weight: 500;
+    }
+    
+    .subbrand {
+      letter-spacing: .3em;
+      font-size: clamp(10px, 2.5vw, 11px);
+      color: rgba(212,175,55,.8);
+      margin-top: 2px;
+    }
+    
+    h1 {
+      font-size: clamp(1.75rem, 7vw, 2.125rem);
+      line-height: 1.15;
+      margin: 14px 0 0;
+      text-align: center;
+      font-weight: 600;
+      max-width: 600px;
+    }
+    
+    .lead {
+      text-align: center;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: clamp(15px, 4vw, 17px);
+      max-width: 500px;
+    }
+    
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid rgba(212,175,55,.7);
+      color: var(--gold);
+      border-radius: 20px;
+      padding: 14px 22px;
+      margin-top: 28px;
+      background: transparent;
+      transition: border-color .2s, transform .2s;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+      min-height: 44px;
+      font-family: inherit;
+    }
+    
+    .cta:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+    
+    .cta:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    
+    /* ===== Sections ===== */
+    .section {
+      background: #0a0a0a;
+      border-top: 1px solid var(--border);
+    }
+    
+    .section .inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 20px;
+    }
+    
+    .h3 {
+      font-weight: 600;
+      font-size: clamp(18px, 4vw, 20px);
+      margin: 0;
+    }
+    
+    .muted {
+      color: #aaa;
+    }
+    
+    /* ===== FAQ ===== */
+    .faq-item {
+      border-top: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: 0;
+      color: var(--text);
+      text-align: left;
+      font-size: 16px;
+      padding: 0;
+      cursor: pointer;
+      min-height: 44px;
+      font-family: inherit;
+    }
+    
+    .faq-q:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    
+    .faq-a {
+      color: #bdbdbd;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease, opacity .25s ease;
+      opacity: 0;
+    }
+    
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 8px;
+    }
+    
+    /* ===== Modal/Overlay ===== */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(2px);
+      z-index: 1000;
+      padding: 20px;
+    }
+    
+    .overlay.open {
+      display: flex;
+    }
+    
+    @media (min-width: 768px) {
+      .overlay {
+        align-items: center;
+      }
+    }
+    
+    .modal {
+      width: 100%;
+      max-width: 520px;
+      background: var(--panel);
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform .25s ease, opacity .25s ease;
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      overflow-x: visible;
+    }
+    
+    /* Custom scrollbar styling */
+    .modal::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .modal::-webkit-scrollbar-track {
+      background: rgba(20,20,20,.3);
+      border-radius: 3px;
+    }
+    
+    .modal::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+    
+    .modal::-webkit-scrollbar-thumb:hover {
+      background: #d4af37;
+      opacity: 1;
+    }
+    
+    .overlay.open .modal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    
+    .close {
+      background: transparent;
+      border: 0;
+      color: #ddd;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 18px;
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    .close:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    
+    .close:hover {
+      background: rgba(255,255,255,.1);
+    }
+    
+    /* ===== Grid & Forms ===== */
+    .grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    
+    label.txt {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: rgba(233,233,233,.8);
+      margin-bottom: 4px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    .file-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      outline: none;
+      background: rgba(20,20,20,.9);
+      border: 1px solid rgba(110,110,110,.35);
+      color: #f0f0f0;
+      transition: border-color .2s;
+      font-size: 16px;
+      font-family: inherit;
+      min-height: 44px;
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="date"]:focus,
+    .file-input:focus {
+      border-color: var(--gold);
+    }
+    
+    .help {
+      font-size: 11px;
+      color: #8a8a8a;
+      margin-top: 4px;
+      text-align: center;
+    }
+    
+    .err {
+      font-size: 12px;
+      color: #fca5a5;
+      margin-top: 4px;
+    }
+    
+    .consent {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: rgba(233,233,233,.8);
+      font-size: 14px;
+      text-align: center;
+      background: rgba(212,175,55,.06);
+      border: 1px solid rgba(212,175,55,.25);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-top: 10px;
+      margin-bottom: 12px;
+    }
+    
+    .consent input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--gold);
+      border-radius: 6px;
+      outline: none;
+    }
+    
+    .consent input[type="checkbox"]:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    
+    .consent span {
+      line-height: 1.3;
+    }
+    
+    .submit {
+      width: 100%;
+      border: 1px solid rgba(212,175,55,.7);
+      color: var(--gold);
+      background: transparent;
+      padding: 12px 16px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: border-color .2s, opacity .2s;
+      margin-top: 12px;
+      font-size: 16px;
+      min-height: 44px;
+      font-family: inherit;
+    }
+    
+    .submit:hover:not(:disabled) {
+      border-color: var(--gold);
+    }
+    
+    .submit:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    
+    .submit[disabled] {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+    
+    /* ===== Date Picker ===== */
+    .date-wrap {
+      position: relative;
+      margin-top: 12px;
+    }
+    
+    /* Ensure calendar can escape modal bounds */
+    .date-picker {
+      position: relative;
+    }
+    
+    .date-button {
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px 40px 12px 14px;
+      border-radius: 12px;
+      background: rgba(20,20,20,.9);
+      border: 1px solid rgba(110,110,110,.35);
+      color: #f0f0f0;
+      text-align: left;
+      position: relative;
+      cursor: pointer;
+      font-size: 16px;
+      min-height: 44px;
+      font-family: inherit;
+    }
+    
+    .date-button:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    
+    .date-button .placeholder {
+      color: #8a8a8a;
+    }
+    
+    .date-button .icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .85;
+      fill: var(--gold);
+    }
+    
+    .calendar {
+      position: fixed;
+      margin-top: 8px;
+      width: 320px;
+      background: var(--panel);
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 14px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      z-index: 1001;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    
+    .calendar.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .cal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(120,120,120,.25);
+    }
+    
+    .cal-title {
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .cal-nav {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .cal-nav button {
+      background: rgba(20,20,20,.9);
+      border: 1px solid rgba(110,110,110,.35);
+      color: #f0f0f0;
+      border-radius: 10px;
+      padding: 6px 8px;
+      cursor: pointer;
+      min-height: 32px;
+      min-width: 32px;
+    }
+    
+    .cal-nav button:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+    
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      padding: 10px;
+    }
+    
+    .cal-dow {
+      font-size: 11px;
+      color: #9e9e9e;
+      text-align: center;
+      padding: 4px;
+    }
+    
+    .cal-day {
+      height: 36px;
+      border: 1px solid rgba(110,110,110,.35);
+      border-radius: 10px;
+      background: rgba(20,20,20,.9);
+      color: #e6e6e6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    
+    .cal-day:hover:not(.disabled) {
+      border-color: var(--gold);
+    }
+    
+    .cal-day.disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+    
+    .cal-day.selected {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold) inset;
+    }
+    
+    .preview {
+      margin-top: 8px;
+      height: 80px;
+      width: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(110,110,110,.35);
+      display: block;
+    }
+    
+    /* ===== Upload ===== */
+    .upload-wrap {
+      position: relative;
+    }
+    
+    .upload-btn {
+      width: 100%;
+      margin-top: 4px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(20,20,20,.9);
+      border: 1px solid rgba(110,110,110,.35);
+      color: #f0f0f0;
+      text-align: left;
+      cursor: pointer;
+      min-height: 44px;
+      font-family: inherit;
+    }
+    
+    .upload-btn:hover {
+      border-color: var(--gold);
+    }
+    
+    .file-native {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      color: #9a9a9a;
+      padding: 28px 20px;
+      border-top: 1px solid var(--border);
+      background: #0a0a0a;
+    }
+    
+    .page {
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+    
+    /* ===== Responsive adjustments ===== */
+    @media (max-width: 767px) {
+      .container {
+        padding: 0 16px;
+      }
+      
+      .section .inner {
+        padding: 32px 16px;
+      }
+      
+      .modal {
+        margin: 0;
+        border-radius: 16px 16px 0 0;
+      }
+      
+      .overlay {
+        padding: 0;
+      }
+      
+      .calendar {
+        width: calc(100vw - 40px);
+        max-width: 320px;
+        left: 20px !important;
+        right: 20px;
+      }
+    }
+    
+    /* Success message */
+    .success-msg {
+      margin-top: 12px;
+      padding: 8px 10px;
+      border: 1px solid rgba(34,197,94,.4);
+      background: rgba(34,197,94,.15);
+      color: #bbf7d0;
+      border-radius: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Hero ===== -->
+  <main class="page">
+    <section class="hero">
+      <div class="container" style="text-align: center;">
+        <div>
+          <div class="badge">
+            <img src="./public/logo.png" alt="VEYRA Logo" loading="lazy" />
+            <div class="brand">V E Y R A</div>
+            <div class="subbrand">MANAGEMENT AGENCY</div>
+          </div>
+          <h1>Take your OnlyFans career to the next level</h1>
+          <p class="lead">Maximize your growth and unlock your full earning potential.</p>
+          <button class="cta" onclick="openModal()" aria-label="Apply Now">
+            Apply Now
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section">
+      <div class="container inner">
+        <div>
+          <div class="h3">FAQ</div>
+          <p class="muted" style="margin-top: 6px;">A few quick answers—reach out after you apply for details.</p>
+          <div>
+            <div class="faq-item">
+              <button class="faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+                <span>Who does VEYRA represent?</span>
+                <span aria-hidden="true">▾</span>
+              </button>
+              <div class="faq-a">Selective creators with a premium brand and a focus on intimacy-forward fan relationships.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+                <span>What does VEYRA handle?</span>
+                <span aria-hidden="true">▾</span>
+              </button>
+              <div class="faq-a">Growth, positioning, pricing, and full-funnel fan operations—so you can focus on creating.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+                <span>How do I apply?</span>
+                <span aria-hidden="true">▾</span>
+              </button>
+              <div class="faq-a">Tap Apply. If there's interest, we'll be in touch.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="section">
+      <div class="container inner" style="max-width: 720px;">
+        <h2 class="h3"><span style="color: var(--gold);">VEYRA</span> Media Management</h2>
+        <p class="muted" style="margin-top: 10px;">A boutique partner for creators pursuing a premium, intimacy-first brand. We scale your business quietly—positioning, pricing, fan experience, and strategic growth—while you stay in control of your image and time.</p>
+        <ul class="muted" style="margin-top: 16px; list-style: none; padding: 0;">
+          <li>• Selective roster. Discreet operations.</li>
+          <li>• Strategy, optimization, and fan lifetime value.</li>
+          <li>• You create the allure—we turn it into revenue.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+	    <div class="container">© <span id="currentYear"></span> VEYRA. All rights reserved.</div>
+    </footer>
+  </main>
+
+  <!-- ===== Modal/Application Form ===== -->
+  <div id="overlay" class="overlay" aria-hidden="true" onclick="handleOverlayClick(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div id="modalTitle" class="h3">Apply to <span style="color: var(--gold);">VEYRA</span></div>
+        <button class="close" onclick="closeModal()" aria-label="Close modal">✕</button>
+      </div>
+      <p class="muted" style="margin-top: 6px;">Discreet, selective, results-driven. Tell us a bit about you.</p>
+
+      <form id="applicationForm" onsubmit="handleSubmit(event)" style="margin-top: 18px;">
+        <div class="grid grid-2">
+          <div>
+            <label class="txt" for="firstName">First name</label>
+            <input id="firstName" name="firstName" type="text" placeholder="First name" required />
+            <div class="err" id="firstNameError"></div>
+          </div>
+          <div>
+            <label class="txt" for="lastName">Last name</label>
+            <input id="lastName" name="lastName" type="text" placeholder="Last name" required />
+            <div class="err" id="lastNameError"></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 12px;">
+          <label class="txt" for="handle">Instagram / Social Media Handle</label>
+          <input id="handle" name="handle" type="text" placeholder="@username" required />
+          <div class="err" id="handleError"></div>
+        </div>
+
+        <div class="grid grid-2">
+          <div>
+            <label class="txt" for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            <div class="err" id="emailError"></div>
+          </div>
+          <div>
+            <label class="txt" for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" required />
+            <div class="err" id="phoneError"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div>
+            <label class="txt" for="country">Country</label>
+            <input id="country" name="country" type="text" placeholder="Country" required />
+            <div class="err" id="countryError"></div>
+          </div>
+          <div>
+            <label class="txt" for="state">State / Region</label>
+            <input id="state" name="state" type="text" placeholder="State / Region" required />
+            <div class="err" id="stateError"></div>
+          </div>
+        </div>
+
+        <div class="date-wrap">
+          <label class="txt" for="dob">Date of birth</label>
+          <div class="date-picker" id="datePicker">
+            <button type="button" class="date-button" id="dateButton" onclick="toggleDatePicker()" aria-haspopup="dialog">
+              <span class="placeholder" id="dateDisplay">YYYY-MM-DD</span>
+              <svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="none" fill="currentColor"></rect>
+                <rect x="3" y="8" width="18" height="4" fill="#000" opacity=".25"></rect>
+                <rect x="7" y="2" width="2" height="4" fill="#000" opacity=".6"></rect>
+                <rect x="15" y="2" width="2" height="4" fill="#000" opacity=".6"></rect>
+              </svg>
+            </button>
+            <div class="calendar" id="calendar" style="display: none;">
+              <div class="cal-head">
+                <div class="cal-title" id="calTitle">January 2024</div>
+                <div class="cal-nav">
+                  <button type="button" onclick="changeMonth(-1)" id="prevMonth">‹</button>
+                  <button type="button" onclick="changeMonth(1)" id="nextMonth">›</button>
+                </div>
+              </div>
+              <div class="cal-grid" id="calGrid">
+                <div class="cal-dow">Su</div>
+                <div class="cal-dow">Mo</div>
+                <div class="cal-dow">Tu</div>
+                <div class="cal-dow">We</div>
+                <div class="cal-dow">Th</div>
+                <div class="cal-dow">Fr</div>
+                <div class="cal-dow">Sa</div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="dob" name="dob" required />
+          <div class="err" id="dobError"></div>
+          <div class="help">Must be 18+</div>
+        </div>
+
+        <div class="grid grid-3" style="margin-top: 8px;">
+          <div>
+            <label class="txt" for="headshot1">Headshot 1</label>
+            <div class="upload-wrap">
+              <button type="button" class="upload-btn">Upload</button>
+              <input class="file-native" id="headshot1" name="headshot1" type="file" accept="image/jpeg,image/png" onchange="handleFileUpload('headshot1')" required />
+            </div>
+            <div class="err" id="headshot1Error"></div>
+            <img id="headshot1Preview" class="preview" style="display: none;" alt="Headshot 1 preview" />
+          </div>
+          <div>
+            <label class="txt" for="headshot2">Headshot 2</label>
+            <div class="upload-wrap">
+              <button type="button" class="upload-btn">Upload</button>
+              <input class="file-native" id="headshot2" name="headshot2" type="file" accept="image/jpeg,image/png" onchange="handleFileUpload('headshot2')" required />
+            </div>
+            <div class="err" id="headshot2Error"></div>
+            <img id="headshot2Preview" class="preview" style="display: none;" alt="Headshot 2 preview" />
+          </div>
+          <div>
+            <label class="txt" for="bodyshot">Bodyshot</label>
+            <div class="upload-wrap">
+              <button type="button" class="upload-btn">Upload</button>
+              <input class="file-native" id="bodyshot" name="bodyshot" type="file" accept="image/jpeg,image/png" onchange="handleFileUpload('bodyshot')" required />
+            </div>
+            <div class="err" id="bodyshotError"></div>
+            <img id="bodyshotPreview" class="preview" style="display: none;" alt="Bodyshot preview" />
+          </div>
+        </div>
+        <div class="help" style="text-align: center;">Required: two headshots and one bodyshot (JPG/PNG)</div>
+
+        <label class="consent">
+          <input type="checkbox" id="consent" name="consent" required />
+          <span>I agree to be contacted by <span style="color: var(--gold);">VEYRA</span> about representation.</span>
+        </label>
+        <div class="err" id="consentError" style="text-align: center;"></div>
+
+        <button class="submit" type="submit" id="submitBtn">Submit Application</button>
+        <div id="successMessage" class="success-msg" style="display: none;">
+          Application received. We'll reach out privately.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Zapier webhook URL - replace with your actual webhook URL
+    const ZAP_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/24510282/ud9a18k/";
+
+    let currentDate = new Date();
+    let selectedDate = "";
+    const maxDate = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() - 18);
+    
+    const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+    const ALLOWED_TYPES = ["image/jpeg", "image/png"];
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+      setupDatePicker();
+      setupOutsideClickHandlers();
+    });
+
+    // Modal functions
+    function openModal() {
+      const overlay = document.getElementById('overlay');
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('firstName').focus();
+    }
+
+    function closeModal() {
+      const overlay = document.getElementById('overlay');
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      closeCalendar(); // Close calendar when modal closes
+      clearErrors();
+    }
+
+    function handleOverlayClick(event) {
+      if (event.target === event.currentTarget) {
+        closeModal();
+      }
+    }
+
+    // FAQ functions
+    function toggleFaq(button) {
+      const item = button.parentElement;
+      const isOpen = item.classList.contains('open');
+      
+      // Close all FAQ items
+      document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(q => q.setAttribute('aria-expanded', 'false'));
+      
+      if (!isOpen) {
+        item.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // Date picker functions
+    function setupDatePicker() {
+      renderCalendar();
+    }
+
+    function toggleDatePicker() {
+      const calendar = document.getElementById('calendar');
+      const dateButton = document.getElementById('dateButton');
+      const isVisible = calendar.classList.contains('show');
+      
+      if (isVisible) {
+        closeCalendar();
+      } else {
+        openCalendar();
+      }
+    }
+    
+    function openCalendar() {
+      const calendar = document.getElementById('calendar');
+      const dateButton = document.getElementById('dateButton');
+      
+      // Position the calendar relative to the date button
+      const rect = dateButton.getBoundingClientRect();
+      const calendarHeight = 320; // Approximate calendar height
+      const viewportHeight = window.innerHeight;
+      const spaceBelow = viewportHeight - rect.bottom;
+      const spaceAbove = rect.top;
+      
+      calendar.style.display = 'block';
+      calendar.style.left = rect.left + 'px';
+      
+      // Position above if not enough space below
+      if (spaceBelow < calendarHeight + 20 && spaceAbove > calendarHeight) {
+        calendar.style.top = (rect.top - calendarHeight - 8) + 'px';
+      } else {
+        calendar.style.top = (rect.bottom + 8) + 'px';
+      }
+      
+      // Add show class after positioning
+      requestAnimationFrame(() => {
+        calendar.classList.add('show');
+      });
+      
+      // Close on outside click
+      setTimeout(() => {
+        document.addEventListener('click', closeOnOutsideClick);
+      }, 10);
+    }
+    
+    function closeCalendar() {
+      const calendar = document.getElementById('calendar');
+      calendar.classList.remove('show');
+      
+      setTimeout(() => {
+        calendar.style.display = 'none';
+      }, 200);
+      
+      document.removeEventListener('click', closeOnOutsideClick);
+    }
+    
+    function closeOnOutsideClick(event) {
+      const calendar = document.getElementById('calendar');
+      const dateButton = document.getElementById('dateButton');
+      
+      if (!calendar.contains(event.target) && !dateButton.contains(event.target)) {
+        closeCalendar();
+      }
+    }
+
+    function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      
+      document.getElementById('calTitle').textContent = `${MONTHS[month]} ${year}`;
+      
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const startDate = firstDay.getDay();
+      const daysInMonth = lastDay.getDate();
+      
+      const grid = document.getElementById('calGrid');
+      const existingDays = grid.querySelectorAll('.cal-day');
+      existingDays.forEach(day => day.remove());
+      
+      // Empty cells for days before month starts
+      for (let i = 0; i < startDate; i++) {
+        const emptyCell = document.createElement('div');
+        grid.appendChild(emptyCell);
+      }
+      
+      // Days of the month
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayDate = new Date(year, month, day);
+        const isDisabled = dayDate > maxDate;
+        const isSelected = selectedDate && selectedDate === formatDate(dayDate);
+        
+        const dayButton = document.createElement('button');
+        dayButton.type = 'button';
+        dayButton.className = `cal-day ${isDisabled ? 'disabled' : ''} ${isSelected ? 'selected' : ''}`;
+        dayButton.textContent = day;
+        dayButton.disabled = isDisabled;
+        
+        if (!isDisabled) {
+          dayButton.onclick = () => selectDate(dayDate);
+        }
+        
+        grid.appendChild(dayButton);
+      }
+      
+      // Update navigation buttons
+      const nextMonthDate = new Date(year, month + 1, 1);
+      document.getElementById('nextMonth').disabled = nextMonthDate > maxDate;
+    }
+
+    function changeMonth(direction) {
+      currentDate.setMonth(currentDate.getMonth() + direction);
+      renderCalendar();
+    }
+
+    function selectDate(date) {
+      selectedDate = formatDate(date);
+      document.getElementById('dob').value = selectedDate;
+      document.getElementById('dateDisplay').textContent = selectedDate;
+      document.getElementById('dateDisplay').classList.remove('placeholder');
+      closeCalendar();
+      renderCalendar();
+    }
+
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    // File upload functions
+    function handleFileUpload(fieldName) {
+      const input = document.getElementById(fieldName);
+      const file = input.files[0];
+      const preview = document.getElementById(fieldName + 'Preview');
+      const error = document.getElementById(fieldName + 'Error');
+      
+      error.textContent = '';
+      
+      if (file) {
+        const fileError = validateFile(file);
+        if (fileError) {
+          error.textContent = fileError;
+          preview.style.display = 'none';
+          return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.style.display = 'none';
+      }
+    }
+
+    function validateFile(file) {
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        return 'JPG/PNG only';
+      }
+      if (file.size > MAX_FILE_SIZE) {
+        return 'Max 5MB';
+      }
+      return '';
+    }
+
+    // Form validation
+    function validateForm() {
+      clearErrors();
+      let isValid = true;
+      
+      const form = document.getElementById('applicationForm');
+      const formData = new FormData(form);
+      
+      // Text field validation
+      const firstName = formData.get('firstName').trim();
+      const lastName = formData.get('lastName').trim();
+      const handle = formData.get('handle').trim();
+      const email = formData.get('email').trim();
+      const phone = formData.get('phone').trim();
+      const country = formData.get('country').trim();
+      const state = formData.get('state').trim();
+      const dob = formData.get('dob');
+      const consent = formData.get('consent');
+      
+      if (!firstName) {
+        showError('firstName', 'Required');
+        isValid = false;
+      }
+      
+      if (!lastName) {
+        showError('lastName', 'Required');
+        isValid = false;
+      }
+      
+      if (!handle || !isValidHandle(handle)) {
+        showError('handle', 'Invalid handle');
+        isValid = false;
+      }
+      
+      if (!email || !isValidEmail(email)) {
+        showError('email', 'Invalid email');
+        isValid = false;
+      }
+      
+      if (!phone || !isValidPhone(phone)) {
+        showError('phone', 'Invalid phone');
+        isValid = false;
+      }
+      
+      if (!country) {
+        showError('country', 'Required');
+        isValid = false;
+      }
+      
+      if (!state) {
+        showError('state', 'Required');
+        isValid = false;
+      }
+      
+      if (!dob) {
+        showError('dob', 'Required');
+        isValid = false;
+      } else if (!is18Plus(dob)) {
+        showError('dob', 'Must be 18+');
+        isValid = false;
+      }
+      
+      // File validation
+      const files = ['headshot1', 'headshot2', 'bodyshot'];
+      files.forEach(fieldName => {
+        const input = document.getElementById(fieldName);
+        const file = input.files[0];
+        if (!file) {
+          showError(fieldName, 'Required');
+          isValid = false;
+        } else {
+          const fileError = validateFile(file);
+          if (fileError) {
+            showError(fieldName, fileError);
+            isValid = false;
+          }
+        }
+      });
+      
+      if (!consent) {
+        showError('consent', 'Required');
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function isValidHandle(handle) {
+      return /^@?[a-zA-Z0-9._]{2,30}$/.test(handle);
+    }
+
+    function isValidPhone(phone) {
+      return phone.replace(/[^0-9]/g, '').length >= 7;
+    }
+
+    function is18Plus(dateString) {
+      if (!dateString) return false;
+      const birthDate = new Date(dateString);
+      if (isNaN(birthDate.getTime())) return false;
+      
+      const today = new Date();
+      const minDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+      return birthDate <= minDate;
+    }
+
+    function showError(fieldName, message) {
+      const errorElement = document.getElementById(fieldName + 'Error');
+      if (errorElement) {
+        errorElement.textContent = message;
+      }
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.err').forEach(error => error.textContent = '');
+    }
+
+    // Form submission
+    async function handleSubmit(event) {
+      event.preventDefault();
+      
+      if (!validateForm()) {
+        return;
+      }
+      
+      const form = document.getElementById('applicationForm');
+      const formData = new FormData(form);
+      const submitBtn = document.getElementById('submitBtn');
+      
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      
+      // Prepare data for local storage (text only)
+      const textData = {
+        firstName: formData.get('firstName').trim(),
+        lastName: formData.get('lastName').trim(),
+        handle: formData.get('handle').startsWith('@') ? formData.get('handle') : '@' + formData.get('handle'),
+        email: formData.get('email').trim(),
+        phone: formData.get('phone').trim(),
+        country: formData.get('country').trim(),
+        state: formData.get('state').trim(),
+        dob: formData.get('dob'),
+        consent: true,
+        timestamp: new Date().toISOString()
+      };
+      
+      // Save to local storage
+      saveToLocal(textData);
+      
+      // Submit to Zapier if URL is configured
+      if (ZAP_WEBHOOK_URL) {
+        try {
+          await submitToZapier(formData);
+        } catch (error) {
+          console.error('Webhook submission failed:', error);
+          // Continue with success flow even if webhook fails
+        }
+      }
+      
+      // Show success message
+      document.getElementById('successMessage').style.display = 'block';
+      
+      setTimeout(() => {
+        resetForm();
+        closeModal();
+      }, 1400);
+    }
+
+    function saveToLocal(data) {
+      try {
+        const existing = JSON.parse(localStorage.getItem('veyra_leads') || '[]');
+        const withId = { id: Date.now(), ...data };
+        localStorage.setItem('veyra_leads', JSON.stringify([withId, ...existing]));
+      } catch (error) {
+        console.error('Failed to save to localStorage:', error);
+      }
+    }
+
+    async function submitToZapier(formData) {
+      if (!ZAP_WEBHOOK_URL) {
+        return Promise.resolve(); // Simulate success if no webhook URL
+      }
+      
+      const response = await fetch(ZAP_WEBHOOK_URL, {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      return response.json();
+    }
+
+    function resetForm() {
+      const form = document.getElementById('applicationForm');
+      form.reset();
+      
+      // Reset date picker
+      selectedDate = "";
+      document.getElementById('dateDisplay').textContent = 'YYYY-MM-DD';
+      document.getElementById('dateDisplay').classList.add('placeholder');
+      
+      // Hide previews
+      document.querySelectorAll('.preview').forEach(preview => {
+        preview.style.display = 'none';
+        if (preview.src) {
+          URL.revokeObjectURL(preview.src);
+        }
+      });
+      
+      // Reset submit button
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Application';
+      
+      // Hide success message
+      document.getElementById('successMessage').style.display = 'none';
+      
+      clearErrors();
+    }
+
+    // Outside click handlers
+    function setupOutsideClickHandlers() {
+      // Keyboard handlers
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const overlay = document.getElementById('overlay');
+          if (overlay.classList.contains('open')) {
+            closeModal();
+            return; // Modal close will also close calendar
+          }
+          
+          const calendar = document.getElementById('calendar');
+          if (calendar.classList.contains('show')) {
+            closeCalendar();
+          }
+        }
+      });
+      
+      // Handle viewport resize
+      window.addEventListener('resize', function() {
+        const calendar = document.getElementById('calendar');
+        if (calendar.classList.contains('show')) {
+          closeCalendar(); // Close calendar on resize to avoid positioning issues
+        }
+      });
+    }
+  </script>
+</body>
+</html>
