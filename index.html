@@ -644,6 +644,7 @@
       opacity: 0;
       transform: translateY(10px);
       transition: opacity 0.2s ease, transform 0.2s ease;
+      overflow: hidden;
     }
     
     .calendar.show {
@@ -651,101 +652,179 @@
       transform: translateY(0);
     }
     
-    .cal-head {
+    /* Sliding panels for date selection */
+    .date-selection-panels {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 12px;
-      border-bottom: 1px solid rgba(120,120,120,.25);
+      transition: transform 0.3s ease;
+      width: 300%;
     }
     
-    .cal-title {
+    .date-panel {
+      width: 33.333%;
+      flex-shrink: 0;
+    }
+    
+    /* Panel states */
+    .date-selection-panels.year-view {
+      transform: translateX(0);
+    }
+    
+    .date-selection-panels.month-view {
+      transform: translateX(-33.333%);
+    }
+    
+    .date-selection-panels.day-view {
+      transform: translateX(-66.666%);
+    }
+    
+    /* Year selection panel */
+    .year-panel {
+      padding: 15px;
+    }
+    
+    .year-panel-title {
       font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      user-select: none;
-      transition: opacity 0.2s;
-    }
-    
-    .cal-title:hover {
-      opacity: 0.8;
-    }
-    
-    .year-selector {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--panel);
-      border: 1px solid rgba(212,175,55,.3);
-      border-top: none;
-      border-radius: 0 0 14px 14px;
-      max-height: 200px;
-      overflow-y: auto;
-      z-index: 1002;
-      display: none;
-    }
-    
-    .year-option {
-      padding: 8px 12px;
-      cursor: pointer;
-      color: #f0f0f0;
-      border-bottom: 1px solid rgba(110,110,110,.15);
-      transition: background-color 0.2s;
-    }
-    
-    .year-option:hover {
-      background: rgba(212,175,55,.2);
-    }
-    
-    .year-option.selected {
-      background: rgba(212,175,55,.3);
       color: var(--gold);
-      font-weight: 600;
+      margin-bottom: 12px;
+      text-align: center;
+      font-size: 16px;
     }
     
-    .year-selector::-webkit-scrollbar {
+    .year-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+    
+    .year-grid::-webkit-scrollbar {
       width: 4px;
     }
     
-    .year-selector::-webkit-scrollbar-track {
+    .year-grid::-webkit-scrollbar-track {
       background: rgba(20,20,20,.3);
+      border-radius: 2px;
     }
     
-    .year-selector::-webkit-scrollbar-thumb {
+    .year-grid::-webkit-scrollbar-thumb {
       background: var(--gold);
       border-radius: 2px;
     }
     
-    .cal-nav {
-      display: flex;
-      gap: 8px;
+    .year-btn {
+      padding: 10px 8px;
+      border: 1px solid rgba(110,110,110,.35);
+      border-radius: 8px;
+      background: rgba(20,20,20,.9);
+      color: #e6e6e6;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+      font-family: inherit;
     }
     
-    .cal-nav button {
+    .year-btn:hover {
+      border-color: var(--gold);
+      background: rgba(212,175,55,.1);
+    }
+    
+    .year-btn.selected {
+      background: rgba(212,175,55,.3);
+      border-color: var(--gold);
+      color: var(--gold);
+      font-weight: 600;
+    }
+    
+    /* Month selection panel */
+    .month-panel {
+      padding: 15px;
+    }
+    
+    .month-panel-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .back-btn {
       background: rgba(20,20,20,.9);
       border: 1px solid rgba(110,110,110,.35);
       color: #f0f0f0;
-      border-radius: 10px;
-      padding: 6px 8px;
+      border-radius: 8px;
+      padding: 6px 10px;
       cursor: pointer;
-      min-height: 32px;
-      min-width: 32px;
+      margin-right: 12px;
+      font-size: 14px;
+      transition: all 0.2s;
     }
     
-    .cal-nav button:disabled {
+    .back-btn:hover {
+      border-color: var(--gold);
+      background: rgba(212,175,55,.1);
+    }
+    
+    .month-panel-title {
+      font-weight: 600;
+      color: var(--gold);
+      text-align: center;
+      font-size: 16px;
+      flex: 1;
+    }
+    
+    .month-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    
+    .month-btn {
+      padding: 12px 8px;
+      border: 1px solid rgba(110,110,110,.35);
+      border-radius: 8px;
+      background: rgba(20,20,20,.9);
+      color: #e6e6e6;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      text-align: center;
+      font-family: inherit;
+    }
+    
+    .month-btn:hover:not(:disabled) {
+      border-color: var(--gold);
+      background: rgba(212,175,55,.1);
+    }
+    
+    .month-btn:disabled {
       opacity: .4;
       cursor: not-allowed;
+    }
+    
+    /* Day selection panel */
+    .day-panel {
+      padding: 15px;
+    }
+    
+    .day-panel-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .day-panel-title {
+      font-weight: 600;
+      color: var(--gold);
+      text-align: center;
+      font-size: 16px;
+      flex: 1;
     }
     
     .cal-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 6px;
-      padding: 10px;
     }
     
     .cal-dow {
@@ -840,6 +919,151 @@
     @media (min-width: 768px) {
       .page {
         max-width: none;
+      }
+    }
+    
+    /* ===== Fire and Spark Animations ===== */
+    .animated-tagline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 14px 0 0;
+    }
+    
+    .tagline-top {
+      font-size: clamp(1.75rem, 7vw, 2.125rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      text-align: center;
+    }
+    
+    .tagline-bottom {
+      font-size: clamp(1.75rem, 7vw, 2.125rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      margin-top: 8px;
+      margin-left: clamp(20px, 8vw, 80px);
+      position: relative;
+      text-align: center;
+    }
+    
+    /* Spark animation on the word 'spark' */
+    .spark-word {
+      position: relative;
+      display: inline-block;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(212,175,55,0.5);
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    
+    .spark-word::before,
+    .spark-word::after {
+      content: '✦';
+      position: absolute;
+      font-size: 0.4em;
+      color: var(--gold);
+      animation: floatSpark 3s ease-in-out infinite;
+    }
+    
+    .spark-word::before {
+      top: -10px;
+      left: -15px;
+      animation-delay: 0s;
+    }
+    
+    .spark-word::after {
+      top: -5px;
+      right: -15px;
+      animation-delay: 1.5s;
+    }
+    
+    /* Fire animation on the word 'fire' */
+    .fire-word {
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(45deg, #ff6b00, #ffa500, #ff4500, #ff6b00);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fireGradient 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.6));
+    }
+    
+    .fire-word::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ff6b00, #ffa500, #ff6b00, transparent);
+      animation: fireFlicker 1.5s ease-in-out infinite;
+      filter: blur(2px);
+    }
+    
+    @keyframes sparkle {
+      0%, 100% {
+        text-shadow: 
+          0 0 10px rgba(212,175,55,0.5),
+          0 0 20px rgba(212,175,55,0.3);
+      }
+      50% {
+        text-shadow: 
+          0 0 20px rgba(212,175,55,0.8),
+          0 0 30px rgba(212,175,55,0.6),
+          0 0 40px rgba(212,175,55,0.4);
+      }
+    }
+    
+    @keyframes floatSpark {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: 1;
+      }
+      80% {
+        opacity: 0.5;
+      }
+    }
+    
+    @keyframes fireGradient {
+      0%, 100% {
+        background-position: 0% 50%;
+        filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.6));
+      }
+      25% {
+        background-position: 50% 0%;
+        filter: drop-shadow(0 0 25px rgba(255, 69, 0, 0.8));
+      }
+      50% {
+        background-position: 100% 50%;
+        filter: drop-shadow(0 0 30px rgba(255, 165, 0, 0.7));
+      }
+      75% {
+        background-position: 50% 100%;
+        filter: drop-shadow(0 0 25px rgba(255, 107, 0, 0.8));
+      }
+    }
+    
+    @keyframes fireFlicker {
+      0%, 100% {
+        opacity: 0.8;
+        transform: translateX(-50%) scaleX(1);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1.1);
       }
     }
     
@@ -1000,7 +1224,10 @@
             <div class="brand">V E Y R A</div>
             <div class="subbrand">MANAGEMENT AGENCY</div>
           </div>
-          <h1>Your beauty is the spark, we build the fire.</h1>
+          <div class="animated-tagline">
+            <div class="tagline-top">Your beauty is the <span class="spark-word">spark</span></div>
+            <div class="tagline-bottom">we build the <span class="fire-word">fire</span></div>
+          </div>
           <button class="cta" onclick="openModal()" aria-label="Apply Now">
             Apply Now
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1130,22 +1357,38 @@
                   </svg>
                 </button>
                 <div class="calendar" id="calendar" style="display: none;">
-                  <div class="cal-head" style="position: relative;">
-                    <div class="cal-title" id="calTitle" onclick="toggleYearSelector()">January 2024 ▾</div>
-                    <div class="cal-nav">
-                      <button type="button" onclick="changeMonth(-1)" id="prevMonth">‹</button>
-                      <button type="button" onclick="changeMonth(1)" id="nextMonth">›</button>
+                  <div class="date-selection-panels" id="dateSelectionPanels">
+                    <!-- Year Selection Panel -->
+                    <div class="date-panel year-panel">
+                      <div class="year-panel-title">Select Year</div>
+                      <div class="year-grid" id="yearGrid"></div>
                     </div>
-                    <div class="year-selector" id="yearSelector"></div>
-                  </div>
-                  <div class="cal-grid" id="calGrid">
-                    <div class="cal-dow">Su</div>
-                    <div class="cal-dow">Mo</div>
-                    <div class="cal-dow">Tu</div>
-                    <div class="cal-dow">We</div>
-                    <div class="cal-dow">Th</div>
-                    <div class="cal-dow">Fr</div>
-                    <div class="cal-dow">Sa</div>
+                    
+                    <!-- Month Selection Panel -->
+                    <div class="date-panel month-panel">
+                      <div class="month-panel-header">
+                        <button type="button" class="back-btn" onclick="goToYearView()">‹ Back</button>
+                        <div class="month-panel-title" id="monthPanelTitle">Select Month</div>
+                      </div>
+                      <div class="month-grid" id="monthGrid"></div>
+                    </div>
+                    
+                    <!-- Day Selection Panel -->
+                    <div class="date-panel day-panel">
+                      <div class="day-panel-header">
+                        <button type="button" class="back-btn" onclick="goToMonthView()">‹ Back</button>
+                        <div class="day-panel-title" id="dayPanelTitle">Select Day</div>
+                      </div>
+                      <div class="cal-grid" id="calGrid">
+                        <div class="cal-dow">Su</div>
+                        <div class="cal-dow">Mo</div>
+                        <div class="cal-dow">Tu</div>
+                        <div class="cal-dow">We</div>
+                        <div class="cal-dow">Th</div>
+                        <div class="cal-dow">Fr</div>
+                        <div class="cal-dow">Sa</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1277,13 +1520,16 @@
     }
 
     // Date picker functions
+    let selectedYear = null;
+    let selectedMonth = null;
+    
     function setupDatePicker() {
-      renderCalendar();
+      populateYearGrid();
+      populateMonthGrid();
     }
 
     function toggleDatePicker() {
       const calendar = document.getElementById('calendar');
-      const dateButton = document.getElementById('dateButton');
       const isVisible = calendar.classList.contains('show');
       
       if (isVisible) {
@@ -1295,6 +1541,12 @@
     
     function openCalendar() {
       const calendar = document.getElementById('calendar');
+      const panels = document.getElementById('dateSelectionPanels');
+      
+      // Reset to year view
+      panels.className = 'date-selection-panels year-view';
+      selectedYear = null;
+      selectedMonth = null;
       
       calendar.style.display = 'block';
       
@@ -1328,12 +1580,77 @@
         closeCalendar();
       }
     }
-
-    function renderCalendar() {
+    
+    // Year selection
+    function populateYearGrid() {
+      const yearGrid = document.getElementById('yearGrid');
+      const currentYear = new Date().getFullYear();
+      const minYear = currentYear - 100;
+      
+      yearGrid.innerHTML = '';
+      
+      for (let year = currentYear; year >= minYear; year--) {
+        const yearBtn = document.createElement('button');
+        yearBtn.type = 'button';
+        yearBtn.className = 'year-btn';
+        yearBtn.textContent = year;
+        yearBtn.onclick = () => selectYear(year);
+        yearGrid.appendChild(yearBtn);
+      }
+    }
+    
+    function selectYear(year) {
+      selectedYear = year;
+      currentDate.setFullYear(year);
+      
+      // Update year buttons
+      document.querySelectorAll('.year-btn').forEach(btn => {
+        btn.classList.toggle('selected', btn.textContent == year);
+      });
+      
+      // Move to month view
+      goToMonthView();
+      updateMonthPanelTitle();
+    }
+    
+    // Month selection
+    function populateMonthGrid() {
+      const monthGrid = document.getElementById('monthGrid');
+      monthGrid.innerHTML = '';
+      
+      MONTHS.forEach((month, index) => {
+        const monthBtn = document.createElement('button');
+        monthBtn.type = 'button';
+        monthBtn.className = 'month-btn';
+        monthBtn.textContent = month.substring(0, 3);
+        monthBtn.onclick = () => selectMonth(index);
+        monthGrid.appendChild(monthBtn);
+      });
+    }
+    
+    function selectMonth(monthIndex) {
+      selectedMonth = monthIndex;
+      currentDate.setMonth(monthIndex);
+      
+      // Check if any days in this month are valid
+      const testDate = new Date(selectedYear, monthIndex, 1);
+      if (testDate > maxDate) {
+        // This month is too recent, don't proceed
+        return;
+      }
+      
+      // Move to day view
+      goToDayView();
+      renderDayGrid();
+    }
+    
+    // Day selection
+    function renderDayGrid() {
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth();
       
-      document.getElementById('calTitle').innerHTML = `${MONTHS[month]} ${year} ▾`;
+      // Update title
+      document.getElementById('dayPanelTitle').textContent = `${MONTHS[month]} ${year}`;
       
       const firstDay = new Date(year, month, 1);
       const lastDay = new Date(year, month + 1, 0);
@@ -1368,15 +1685,6 @@
         
         grid.appendChild(dayButton);
       }
-      
-      // Update navigation buttons
-      const nextMonthDate = new Date(year, month + 1, 1);
-      document.getElementById('nextMonth').disabled = nextMonthDate > maxDate;
-    }
-
-    function changeMonth(direction) {
-      currentDate.setMonth(currentDate.getMonth() + direction);
-      renderCalendar();
     }
 
     function selectDate(date) {
@@ -1385,7 +1693,39 @@
       document.getElementById('dateDisplay').textContent = selectedDate;
       document.getElementById('dateDisplay').classList.remove('placeholder');
       closeCalendar();
-      renderCalendar();
+    }
+    
+    // Navigation functions
+    function goToYearView() {
+      const panels = document.getElementById('dateSelectionPanels');
+      panels.className = 'date-selection-panels year-view';
+    }
+    
+    function goToMonthView() {
+      const panels = document.getElementById('dateSelectionPanels');
+      panels.className = 'date-selection-panels month-view';
+      
+      // Disable months that are too recent
+      if (selectedYear) {
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth();
+        
+        document.querySelectorAll('.month-btn').forEach((btn, index) => {
+          const testDate = new Date(selectedYear, index, 1);
+          btn.disabled = testDate > maxDate;
+        });
+      }
+    }
+    
+    function goToDayView() {
+      const panels = document.getElementById('dateSelectionPanels');
+      panels.className = 'date-selection-panels day-view';
+    }
+    
+    function updateMonthPanelTitle() {
+      if (selectedYear) {
+        document.getElementById('monthPanelTitle').textContent = `${selectedYear} - Select Month`;
+      }
     }
 
     function formatDate(date) {
@@ -1393,48 +1733,6 @@
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
       return `${year}-${month}-${day}`;
-    }
-    
-    // Year selector functions
-    function toggleYearSelector() {
-      const yearSelector = document.getElementById('yearSelector');
-      const isVisible = yearSelector.style.display === 'block';
-      
-      if (isVisible) {
-        yearSelector.style.display = 'none';
-      } else {
-        populateYearSelector();
-        yearSelector.style.display = 'block';
-      }
-    }
-    
-    function populateYearSelector() {
-      const yearSelector = document.getElementById('yearSelector');
-      const currentYear = new Date().getFullYear();
-      const selectedYear = currentDate.getFullYear();
-      
-      yearSelector.innerHTML = '';
-      
-      // Generate years from current year down to 100 years ago
-      for (let year = currentYear; year >= currentYear - 100; year--) {
-        const yearOption = document.createElement('div');
-        yearOption.className = `year-option ${year === selectedYear ? 'selected' : ''}`;
-        yearOption.textContent = year;
-        yearOption.onclick = () => selectYear(year);
-        yearSelector.appendChild(yearOption);
-      }
-      
-      // Scroll to selected year
-      const selectedOption = yearSelector.querySelector('.selected');
-      if (selectedOption) {
-        selectedOption.scrollIntoView({ block: 'center' });
-      }
-    }
-    
-    function selectYear(year) {
-      currentDate.setFullYear(year);
-      renderCalendar();
-      document.getElementById('yearSelector').style.display = 'none';
     }
 
     // File upload functions
