@@ -938,14 +938,16 @@
       text-align: center;
       position: relative;
       background: linear-gradient(90deg, 
-        rgba(100, 100, 100, 0.3) 0%,
-        rgba(150, 150, 150, 0.5) 15%,
-        rgba(200, 200, 200, 0.7) 30%,
-        rgba(233, 228, 216, 0.9) 45%,
-        rgba(255, 215, 0, 1) 65%,
-        rgba(255, 215, 0, 1) 75%,
-        #FFD700 85%,
-        #FFED4E 100%);
+        rgba(50, 50, 50, 0.15) 0%,
+        rgba(80, 80, 80, 0.25) 10%,
+        rgba(100, 100, 100, 0.35) 20%,
+        rgba(150, 150, 150, 0.5) 35%,
+        rgba(200, 180, 100, 0.7) 50%,
+        rgba(212, 175, 55, 0.85) 60%,
+        rgba(255, 215, 0, 1) 70%,
+        #FFD700 80%,
+        #FFED4E 90%,
+        #FFD700 100%);
       background-size: 110% 110%;
       background-position: 0% 50%;
       -webkit-background-clip: text;
@@ -964,11 +966,13 @@
       text-align: center;
       position: relative;
       background: linear-gradient(90deg, 
-        rgba(100, 100, 100, 0.3) 0%,
-        rgba(150, 100, 100, 0.5) 15%,
-        rgba(200, 100, 100, 0.7) 30%,
-        rgba(255, 100, 50, 0.85) 45%,
-        rgba(255, 69, 0, 1) 60%,
+        rgba(50, 50, 50, 0.15) 0%,
+        rgba(80, 60, 60, 0.25) 10%,
+        rgba(100, 80, 80, 0.35) 20%,
+        rgba(150, 80, 60, 0.5) 35%,
+        rgba(200, 80, 40, 0.7) 45%,
+        rgba(255, 100, 30, 0.85) 55%,
+        rgba(255, 69, 0, 1) 65%,
         rgba(255, 45, 0, 1) 75%,
         #FF2200 85%,
         #FF0000 100%);
@@ -980,6 +984,29 @@
       animation: shimmerFire 4s ease-in-out infinite, breathe 3s ease-in-out infinite;
       filter: drop-shadow(0 0 25px rgba(255, 45, 0, 0.5));
       transform-origin: center;
+    }
+    
+    /* Trailing dots styling */
+    .spark-dots {
+      display: inline-block;
+      background: linear-gradient(90deg,
+        #FFD700 0%,
+        rgba(255, 215, 0, 0.8) 30%,
+        rgba(255, 215, 0, 0.5) 60%,
+        rgba(255, 215, 0, 0.2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: dotsFade 3s ease-in-out infinite;
+    }
+    
+    @keyframes dotsFade {
+      0%, 100% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
     }
     
     /* Subtle animations to make text feel alive */
@@ -1188,7 +1215,7 @@
             <div class="subbrand">MANAGEMENT AGENCY</div>
           </div>
           <div class="animated-tagline">
-            <div class="tagline-top">Your beauty is the spark</div>
+            <div class="tagline-top">Your beauty is the spark<span class="spark-dots">...</span></div>
             <div class="tagline-bottom">we build the fire</div>
           </div>
           <button class="cta" onclick="openModal()" aria-label="Apply Now">
