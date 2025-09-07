@@ -938,24 +938,30 @@
       text-align: center;
       position: relative;
       background: linear-gradient(90deg, 
-        rgba(40, 40, 40, 0.2) 0%,     /* Very dark grey, barely visible */
-        rgba(60, 60, 60, 0.3) 15%,
-        rgba(80, 80, 80, 0.4) 30%,
-        rgba(100, 100, 100, 0.5) 45%,
-        rgba(120, 120, 120, 0.6) 60%,
-        rgba(140, 140, 140, 0.7) 70%,
-        rgba(160, 160, 160, 0.8) 76%, /* Grey up until S in spark */
-        rgba(212, 175, 55, 0.9) 77%,  /* Gold starts at S */
-        rgba(255, 215, 0, 1) 80%,
-        #FFD700 85%,
-        #FFED4E 90%,
-        #FFD700 100%);
-      background-size: 200% 100%;
+        rgba(30, 30, 30, 0.2) 0%,     /* Very dark, barely visible */
+        rgba(50, 50, 50, 0.3) 5%,
+        rgba(70, 70, 70, 0.4) 10%,
+        rgba(90, 90, 90, 0.5) 15%,
+        rgba(110, 110, 110, 0.6) 20%,
+        rgba(130, 130, 130, 0.7) 25%,
+        rgba(150, 150, 150, 0.8) 30%,
+        rgba(170, 170, 170, 0.9) 35%,
+        rgba(180, 180, 180, 1) 40%,    /* Full grey */
+        rgba(190, 180, 140, 1) 45%,    /* Start warm transition */
+        rgba(200, 170, 100, 1) 50%,
+        rgba(212, 175, 55, 1) 55%,     /* Gold building */
+        rgba(255, 215, 0, 1) 60%,
+        #FFD700 65%,
+        #FFED4E 70%,
+        #FFD700 75%);
+      background-size: 300% 100%;
+      background-position: -200% 50%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: gradientSlide 6s ease-in-out infinite;
-      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
+      animation: sweepRight 8s linear infinite;
+      filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0));
+      animation-fill-mode: forwards;
     }
     
     .tagline-bottom {
@@ -966,24 +972,30 @@
       text-align: center;
       position: relative;
       background: linear-gradient(90deg, 
-        rgba(40, 40, 40, 0.2) 0%,     /* Very dark grey, barely visible */
-        rgba(60, 60, 60, 0.3) 10%,
-        rgba(80, 80, 80, 0.4) 20%,
-        rgba(100, 100, 100, 0.5) 35%,
-        rgba(120, 120, 120, 0.6) 50%,
-        rgba(140, 140, 140, 0.7) 60%,
-        rgba(160, 160, 160, 0.8) 69%, /* Grey up until F in fire */
-        rgba(255, 100, 50, 0.9) 70%,  /* Fire color starts at F */
-        rgba(255, 69, 0, 1) 73%,
-        #FF2200 78%,
-        #FF0000 85%,
-        #CC0000 100%);
-      background-size: 200% 100%;
+        rgba(30, 30, 30, 0.2) 0%,     /* Very dark, barely visible */
+        rgba(50, 50, 50, 0.3) 5%,
+        rgba(70, 70, 70, 0.4) 10%,
+        rgba(90, 90, 90, 0.5) 15%,
+        rgba(110, 110, 110, 0.6) 20%,
+        rgba(130, 130, 130, 0.7) 25%,
+        rgba(150, 150, 150, 0.8) 30%,
+        rgba(170, 170, 170, 0.9) 35%,
+        rgba(180, 180, 180, 1) 40%,    /* Full grey */
+        rgba(190, 170, 170, 1) 45%,    /* Start warm transition */
+        rgba(220, 140, 120, 1) 50%,
+        rgba(255, 100, 50, 1) 55%,     /* Fire building */
+        rgba(255, 69, 0, 1) 60%,
+        #FF2200 65%,
+        #FF0000 70%,
+        #CC0000 75%);
+      background-size: 300% 100%;
+      background-position: -200% 50%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: gradientSlide 6s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(255, 45, 0, 0.4));
+      animation: sweepRight 8s linear infinite;
+      filter: drop-shadow(0 0 30px rgba(255, 45, 0, 0));
+      animation-fill-mode: forwards;
     }
     
     /* Trailing dots styling */
@@ -999,13 +1011,19 @@
       background-clip: text;
     }
     
-    /* Gradient animation */
-    @keyframes gradientSlide {
-      0%, 100% {
-        background-position: 0% 50%;
+    /* Smooth left-to-right sweep animation */
+    @keyframes sweepRight {
+      0% {
+        background-position: -200% 50%;
+        filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0));
       }
       50% {
-        background-position: 100% 50%;
+        background-position: 0% 50%;
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+      }
+      100% {
+        background-position: 200% 50%;
+        filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
       }
     }
     
