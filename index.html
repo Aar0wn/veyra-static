@@ -939,23 +939,16 @@
       position: relative;
       background: linear-gradient(90deg, 
         rgba(50, 50, 50, 0.15) 0%,
-        rgba(80, 80, 80, 0.25) 10%,
-        rgba(100, 100, 100, 0.35) 20%,
-        rgba(150, 150, 150, 0.5) 35%,
-        rgba(200, 180, 100, 0.7) 50%,
-        rgba(212, 175, 55, 0.85) 60%,
-        rgba(255, 215, 0, 1) 70%,
-        #FFD700 80%,
-        #FFED4E 90%,
-        #FFD700 100%);
-      background-size: 110% 110%;
-      background-position: 0% 50%;
+        rgba(50, 50, 50, 0.15) 70%,
+        rgba(100, 100, 100, 0.3) 75%,
+        rgba(212, 175, 55, 0.7) 80%,
+        rgba(255, 215, 0, 1) 85%,
+        #FFD700 90%,
+        #FFED4E 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: shimmerGold 4s ease-in-out infinite, breathe 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
-      transform-origin: center;
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
     }
     
     .tagline-bottom {
@@ -967,23 +960,17 @@
       position: relative;
       background: linear-gradient(90deg, 
         rgba(50, 50, 50, 0.15) 0%,
-        rgba(80, 60, 60, 0.25) 10%,
-        rgba(100, 80, 80, 0.35) 20%,
-        rgba(150, 80, 60, 0.5) 35%,
-        rgba(200, 80, 40, 0.7) 45%,
-        rgba(255, 100, 30, 0.85) 55%,
-        rgba(255, 69, 0, 1) 65%,
-        rgba(255, 45, 0, 1) 75%,
+        rgba(50, 50, 50, 0.15) 60%,
+        rgba(100, 50, 50, 0.3) 65%,
+        rgba(255, 100, 30, 0.7) 70%,
+        rgba(255, 69, 0, 1) 75%,
+        rgba(255, 45, 0, 1) 80%,
         #FF2200 85%,
         #FF0000 100%);
-      background-size: 110% 110%;
-      background-position: 0% 50%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: shimmerFire 4s ease-in-out infinite, breathe 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 25px rgba(255, 45, 0, 0.5));
-      transform-origin: center;
+      filter: drop-shadow(0 0 20px rgba(255, 45, 0, 0.4));
     }
     
     /* Trailing dots styling */
@@ -997,64 +984,6 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: dotsFade 3s ease-in-out infinite;
-    }
-    
-    @keyframes dotsFade {
-      0%, 100% {
-        opacity: 0.5;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
-    
-    /* Subtle animations to make text feel alive */
-    @keyframes shimmerGold {
-      0%, 100% {
-        background-position: 0% 50%;
-        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
-      }
-      25% {
-        background-position: -5% 50%;
-        filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
-      }
-      50% {
-        background-position: -10% 50%;
-        filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
-      }
-      75% {
-        background-position: -5% 50%;
-        filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
-      }
-    }
-    
-    @keyframes shimmerFire {
-      0%, 100% {
-        background-position: 0% 50%;
-        filter: drop-shadow(0 0 25px rgba(255, 45, 0, 0.5));
-      }
-      25% {
-        background-position: -5% 50%;
-        filter: drop-shadow(0 0 30px rgba(255, 45, 0, 0.6));
-      }
-      50% {
-        background-position: -10% 50%;
-        filter: drop-shadow(0 0 35px rgba(255, 0, 0, 0.7));
-      }
-      75% {
-        background-position: -5% 50%;
-        filter: drop-shadow(0 0 30px rgba(255, 45, 0, 0.6));
-      }
-    }
-    
-    @keyframes breathe {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.02);
-      }
     }
     
     /* ===== Responsive adjustments ===== */
