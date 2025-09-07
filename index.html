@@ -242,7 +242,7 @@
       position: fixed;
       inset: 0;
       display: none;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
       background: rgba(0,0,0,.6);
       backdrop-filter: blur(2px);
@@ -252,12 +252,6 @@
     
     .overlay.open {
       display: flex;
-    }
-    
-    @media (min-width: 768px) {
-      .overlay {
-        align-items: center;
-      }
     }
     
     .modal {
@@ -274,6 +268,8 @@
       max-height: calc(100vh - 40px);
       overflow-y: auto;
       overflow-x: visible;
+      margin: auto;
+      position: relative;
     }
     
     /* Custom scrollbar styling */
@@ -462,9 +458,10 @@
       margin-top: 12px;
     }
     
-    /* Ensure calendar can escape modal bounds */
+    /* Date picker container positioning */
     .date-picker {
       position: relative;
+      z-index: 1;
     }
     
     .date-button {
@@ -502,9 +499,13 @@
     }
     
     .calendar {
-      position: fixed;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
       margin-top: 8px;
       width: 320px;
+      max-width: calc(100vw - 40px);
       background: var(--panel);
       border: 1px solid rgba(212,175,55,.3);
       border-radius: 14px;
@@ -715,24 +716,20 @@
         padding: 32px 16px;
       }
       
-      /* Mobile modal positioning */
+      /* Mobile modal adjustments */
       .overlay {
-        align-items: flex-start;
-        padding: 0;
-        padding-top: env(safe-area-inset-top, 20px);
+        padding: 10px;
       }
       
       .modal {
-        margin: 0;
-        margin-top: 20px;
-        border-radius: 16px 16px 0 0;
-        max-height: calc(100vh - env(safe-area-inset-top, 20px) - 20px);
+        max-height: calc(100vh - 20px);
+        border-radius: 16px;
       }
       
       .calendar {
-        width: calc(100vw - 40px);
-        max-width: 320px;
-        left: 50% !important;
+        width: calc(100% - 20px);
+        max-width: 300px;
+        left: 50%;
         transform: translateX(-50%) translateY(-10px);
       }
       
@@ -1133,32 +1130,8 @@
     
     function openCalendar() {
       const calendar = document.getElementById('calendar');
-      const modal = document.querySelector('.modal');
       
       calendar.style.display = 'block';
-      
-      // Center the calendar within the modal
-      const modalRect = modal.getBoundingClientRect();
-      const calendarWidth = 320;
-      const calendarHeight = 320;
-      
-      // Position horizontally centered in modal
-      const centerX = modalRect.left + (modalRect.width / 2) - (calendarWidth / 2);
-      calendar.style.left = Math.max(20, centerX) + 'px'; // Ensure minimum 20px from viewport edge
-      
-      // Position vertically centered in modal, but adjust if modal is too small
-      const centerY = modalRect.top + (modalRect.height / 2) - (calendarHeight / 2);
-      const minY = modalRect.top + 60; // Leave space from modal top
-      const maxY = modalRect.bottom - calendarHeight - 60; // Leave space from modal bottom
-      
-      let finalY = Math.max(minY, Math.min(centerY, maxY));
-      
-      // Fallback: if modal is very small, position relative to viewport center
-      if (modalRect.height < calendarHeight + 120) {
-        finalY = (window.innerHeight / 2) - (calendarHeight / 2);
-      }
-      
-      calendar.style.top = Math.max(20, finalY) + 'px';
       
       // Add show class after positioning
       requestAnimationFrame(() => {
