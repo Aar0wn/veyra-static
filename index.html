@@ -113,15 +113,15 @@
     
     .brand {
       letter-spacing: .35em;
-      font-size: clamp(12px, 3vw, 14px);
+      font-size: clamp(36px, 9vw, 42px);
       color: var(--gold);
       margin-top: 10px;
-      font-weight: 500;
+      font-weight: 700;
     }
     
     .subbrand {
       letter-spacing: .3em;
-      font-size: clamp(10px, 2.5vw, 11px);
+      font-size: clamp(20px, 5vw, 22px);
       color: rgba(212,175,55,.8);
       margin-top: 2px;
     }
@@ -147,24 +147,26 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      border: 1px solid rgba(212,175,55,.7);
+      gap: 12px;
+      border: 3px solid rgba(212,175,55,.7);
       color: var(--gold);
-      border-radius: 20px;
-      padding: 14px 22px;
-      margin-top: 28px;
+      border-radius: 30px;
+      padding: 21px 33px;
+      margin-top: 42px;
       background: transparent;
       transition: border-color .2s, transform .2s;
       cursor: pointer;
       text-decoration: none;
-      font-size: 16px;
-      min-height: 44px;
+      font-size: 24px;
+      min-height: 66px;
       font-family: inherit;
+      font-weight: 600;
     }
     
     .cta:hover {
       border-color: var(--gold);
       transform: translateY(-1px);
+      background: rgba(212,175,55,.05);
     }
     
     .cta:focus {
@@ -529,6 +531,62 @@
     .cal-title {
       font-weight: 600;
       color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      transition: opacity 0.2s;
+    }
+    
+    .cal-title:hover {
+      opacity: 0.8;
+    }
+    
+    .year-selector {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--panel);
+      border: 1px solid rgba(212,175,55,.3);
+      border-top: none;
+      border-radius: 0 0 14px 14px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1002;
+      display: none;
+    }
+    
+    .year-option {
+      padding: 8px 12px;
+      cursor: pointer;
+      color: #f0f0f0;
+      border-bottom: 1px solid rgba(110,110,110,.15);
+      transition: background-color 0.2s;
+    }
+    
+    .year-option:hover {
+      background: rgba(212,175,55,.2);
+    }
+    
+    .year-option.selected {
+      background: rgba(212,175,55,.3);
+      color: var(--gold);
+      font-weight: 600;
+    }
+    
+    .year-selector::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    .year-selector::-webkit-scrollbar-track {
+      background: rgba(20,20,20,.3);
+    }
+    
+    .year-selector::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 2px;
     }
     
     .cal-nav {
@@ -708,7 +766,14 @@
       
       /* Ensure proper bottom spacing in modal */
       .modal {
-        padding-bottom: 40px;
+        padding-bottom: 60px;
+      }
+      
+      /* Adjust CTA button size for mobile */
+      .cta {
+        font-size: 20px;
+        padding: 18px 28px;
+        min-height: 56px;
       }
     }
     
@@ -743,7 +808,7 @@
             <div class="brand">V E Y R A</div>
             <div class="subbrand">MANAGEMENT AGENCY</div>
           </div>
-          <h1>Your beauty is the spark, we build the fire and create the desire.</h1>
+          <h1>Your beauty is the spark, we build the fire.</h1>
           <button class="cta" onclick="openModal()" aria-label="Apply Now">
             Apply Now
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -867,12 +932,13 @@
               </svg>
             </button>
             <div class="calendar" id="calendar" style="display: none;">
-              <div class="cal-head">
-                <div class="cal-title" id="calTitle">January 2024</div>
+              <div class="cal-head" style="position: relative;">
+                <div class="cal-title" id="calTitle" onclick="toggleYearSelector()">January 2024 ▾</div>
                 <div class="cal-nav">
                   <button type="button" onclick="changeMonth(-1)" id="prevMonth">‹</button>
                   <button type="button" onclick="changeMonth(1)" id="nextMonth">›</button>
                 </div>
+                <div class="year-selector" id="yearSelector"></div>
               </div>
               <div class="cal-grid" id="calGrid">
                 <div class="cal-dow">Su</div>
@@ -1067,7 +1133,7 @@
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth();
       
-      document.getElementById('calTitle').textContent = `${MONTHS[month]} ${year}`;
+      document.getElementById('calTitle').innerHTML = `${MONTHS[month]} ${year} ▾`;
       
       const firstDay = new Date(year, month, 1);
       const lastDay = new Date(year, month + 1, 0);
@@ -1127,6 +1193,48 @@
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
       return `${year}-${month}-${day}`;
+    }
+    
+    // Year selector functions
+    function toggleYearSelector() {
+      const yearSelector = document.getElementById('yearSelector');
+      const isVisible = yearSelector.style.display === 'block';
+      
+      if (isVisible) {
+        yearSelector.style.display = 'none';
+      } else {
+        populateYearSelector();
+        yearSelector.style.display = 'block';
+      }
+    }
+    
+    function populateYearSelector() {
+      const yearSelector = document.getElementById('yearSelector');
+      const currentYear = new Date().getFullYear();
+      const selectedYear = currentDate.getFullYear();
+      
+      yearSelector.innerHTML = '';
+      
+      // Generate years from current year down to 100 years ago
+      for (let year = currentYear; year >= currentYear - 100; year--) {
+        const yearOption = document.createElement('div');
+        yearOption.className = `year-option ${year === selectedYear ? 'selected' : ''}`;
+        yearOption.textContent = year;
+        yearOption.onclick = () => selectYear(year);
+        yearSelector.appendChild(yearOption);
+      }
+      
+      // Scroll to selected year
+      const selectedOption = yearSelector.querySelector('.selected');
+      if (selectedOption) {
+        selectedOption.scrollIntoView({ block: 'center' });
+      }
+    }
+    
+    function selectYear(year) {
+      currentDate.setFullYear(year);
+      renderCalendar();
+      document.getElementById('yearSelector').style.display = 'none';
     }
 
     // File upload functions

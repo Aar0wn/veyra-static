@@ -1,4 +1,4 @@
-# VEYRA - OnlyFans Management Agency Landing Page
+# VEYRA - Social Media Management Agency Landing Page
 
 A premium, professional landing page for VEYRA Management Agency - a boutique partner for creators pursuing intimacy-first brands.
 
