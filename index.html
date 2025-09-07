@@ -102,8 +102,8 @@
     }
     
     .badge img {
-      height: 56px;
-      width: 56px;
+      height: 140px;
+      width: 140px;
       object-fit: contain;
       filter: drop-shadow(0 0 22px rgba(212,175,55,.55));
       display: block;
@@ -672,6 +672,20 @@
         left: 20px !important;
         right: 20px;
       }
+      
+      /* Adjust logo size for mobile */
+      .badge img {
+        height: 100px;
+        width: 100px;
+      }
+    }
+    
+    /* Medium screens */
+    @media (max-width: 480px) {
+      .badge img {
+        height: 80px;
+        width: 80px;
+      }
     }
     
     /* Success message */
@@ -786,7 +800,7 @@
 
         <div style="margin-top: 12px;">
           <label class="txt" for="handle">Instagram / Social Media Handle</label>
-          <input id="handle" name="handle" type="text" placeholder="@username" required />
+          <input id="handle" name="handle" type="text" placeholder="@username" oninput="formatHandle(this)" />
           <div class="err" id="handleError"></div>
         </div>
 
@@ -803,17 +817,10 @@
           </div>
         </div>
 
-        <div class="grid grid-2">
-          <div>
-            <label class="txt" for="country">Country</label>
-            <input id="country" name="country" type="text" placeholder="Country" required />
-            <div class="err" id="countryError"></div>
-          </div>
-          <div>
-            <label class="txt" for="state">State / Region</label>
-            <input id="state" name="state" type="text" placeholder="State / Region" required />
-            <div class="err" id="stateError"></div>
-          </div>
+        <div>
+          <label class="txt" for="state">State / Region</label>
+          <input id="state" name="state" type="text" placeholder="State / Region" required />
+          <div class="err" id="stateError"></div>
         </div>
 
         <div class="date-wrap">
@@ -1143,7 +1150,6 @@
       const handle = formData.get('handle').trim();
       const email = formData.get('email').trim();
       const phone = formData.get('phone').trim();
-      const country = formData.get('country').trim();
       const state = formData.get('state').trim();
       const dob = formData.get('dob');
       const consent = formData.get('consent');
@@ -1158,10 +1164,7 @@
         isValid = false;
       }
       
-      if (!handle || !isValidHandle(handle)) {
-        showError('handle', 'Invalid handle');
-        isValid = false;
-      }
+      // Handle is now optional - no validation needed
       
       if (!email || !isValidEmail(email)) {
         showError('email', 'Invalid email');
@@ -1170,11 +1173,6 @@
       
       if (!phone || !isValidPhone(phone)) {
         showError('phone', 'Invalid phone');
-        isValid = false;
-      }
-      
-      if (!country) {
-        showError('country', 'Required');
         isValid = false;
       }
       
@@ -1220,8 +1218,34 @@
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    function isValidHandle(handle) {
-      return /^@?[a-zA-Z0-9._]{2,30}$/.test(handle);
+    // Handle formatting functions
+    function formatHandle(input) {
+      let value = input.value;
+      
+      // Remove any existing @ symbols
+      value = value.replace(/@/g, '');
+      
+      // Add @ at the beginning if there's content
+      if (value.length > 0) {
+        input.value = '@' + value;
+      } else {
+        input.value = '';
+      }
+    }
+    
+    function formatHandleForStorage(handle) {
+      if (!handle || handle.trim() === '') {
+        return '';
+      }
+      
+      const trimmed = handle.trim();
+      
+      // Add @ if it doesn't start with one
+      if (trimmed && !trimmed.startsWith('@')) {
+        return '@' + trimmed;
+      }
+      
+      return trimmed;
     }
 
     function isValidPhone(phone) {
@@ -1269,10 +1293,9 @@
       const textData = {
         firstName: formData.get('firstName').trim(),
         lastName: formData.get('lastName').trim(),
-        handle: formData.get('handle').startsWith('@') ? formData.get('handle') : '@' + formData.get('handle'),
+        handle: formatHandleForStorage(formData.get('handle') || ''),
         email: formData.get('email').trim(),
         phone: formData.get('phone').trim(),
-        country: formData.get('country').trim(),
         state: formData.get('state').trim(),
         dob: formData.get('dob'),
         consent: true,
@@ -1285,6 +1308,12 @@
       // Submit to Zapier if URL is configured
       if (ZAP_WEBHOOK_URL) {
         try {
+          // Format handle for Zapier submission
+          const handleValue = formatHandleForStorage(formData.get('handle') || '');
+          if (handleValue) {
+            formData.set('handle', handleValue);
+          }
+          
           await submitToZapier(formData);
         } catch (error) {
           console.error('Webhook submission failed:', error);
