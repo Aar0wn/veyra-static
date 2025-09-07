@@ -732,8 +732,12 @@
       .calendar {
         width: calc(100vw - 40px);
         max-width: 320px;
-        left: 20px !important;
-        right: 20px;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-10px);
+      }
+      
+      .calendar.show {
+        transform: translateX(-50%) translateY(0);
       }
       
       /* Adjust logo size for mobile */
@@ -785,15 +789,60 @@
       }
     }
     
-    /* Success message */
+    /* Loading and Success States */
+    .loading-spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(212,175,55,.3);
+      border-radius: 50%;
+      border-top-color: var(--gold);
+      animation: spin 0.8s ease-in-out infinite;
+      margin-right: 8px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .submit.loading {
+      opacity: 0.8;
+      cursor: wait;
+      pointer-events: none;
+    }
+    
     .success-msg {
-      margin-top: 12px;
-      padding: 8px 10px;
-      border: 1px solid rgba(34,197,94,.4);
-      background: rgba(34,197,94,.15);
-      color: #bbf7d0;
-      border-radius: 12px;
+      margin-top: 16px;
+      padding: 16px 20px;
+      border: 1px solid rgba(212,175,55,.4);
+      background: rgba(212,175,55,.1);
+      color: var(--gold);
+      border-radius: 16px;
       text-align: center;
+      font-weight: 500;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .success-icon {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .success-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--gold);
+      stroke-width: 3;
     }
   </style>
 </head>
@@ -995,7 +1044,12 @@
 
         <button class="submit" type="submit" id="submitBtn">Submit Application</button>
         <div id="successMessage" class="success-msg" style="display: none;">
-          Application received. We'll reach out privately.
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span>Application received. We'll reach out privately.</span>
         </div>
       </form>
     </div>
@@ -1079,24 +1133,32 @@
     
     function openCalendar() {
       const calendar = document.getElementById('calendar');
-      const dateButton = document.getElementById('dateButton');
-      
-      // Position the calendar relative to the date button
-      const rect = dateButton.getBoundingClientRect();
-      const calendarHeight = 320; // Approximate calendar height
-      const viewportHeight = window.innerHeight;
-      const spaceBelow = viewportHeight - rect.bottom;
-      const spaceAbove = rect.top;
+      const modal = document.querySelector('.modal');
       
       calendar.style.display = 'block';
-      calendar.style.left = rect.left + 'px';
       
-      // Position above if not enough space below
-      if (spaceBelow < calendarHeight + 20 && spaceAbove > calendarHeight) {
-        calendar.style.top = (rect.top - calendarHeight - 8) + 'px';
-      } else {
-        calendar.style.top = (rect.bottom + 8) + 'px';
+      // Center the calendar within the modal
+      const modalRect = modal.getBoundingClientRect();
+      const calendarWidth = 320;
+      const calendarHeight = 320;
+      
+      // Position horizontally centered in modal
+      const centerX = modalRect.left + (modalRect.width / 2) - (calendarWidth / 2);
+      calendar.style.left = Math.max(20, centerX) + 'px'; // Ensure minimum 20px from viewport edge
+      
+      // Position vertically centered in modal, but adjust if modal is too small
+      const centerY = modalRect.top + (modalRect.height / 2) - (calendarHeight / 2);
+      const minY = modalRect.top + 60; // Leave space from modal top
+      const maxY = modalRect.bottom - calendarHeight - 60; // Leave space from modal bottom
+      
+      let finalY = Math.max(minY, Math.min(centerY, maxY));
+      
+      // Fallback: if modal is very small, position relative to viewport center
+      if (modalRect.height < calendarHeight + 120) {
+        finalY = (window.innerHeight / 2) - (calendarHeight / 2);
       }
+      
+      calendar.style.top = Math.max(20, finalY) + 'px';
       
       // Add show class after positioning
       requestAnimationFrame(() => {
@@ -1423,30 +1485,35 @@
       const form = document.getElementById('applicationForm');
       const formData = new FormData(form);
       const submitBtn = document.getElementById('submitBtn');
+      const successMessage = document.getElementById('successMessage');
       
-      // Disable submit button
+      // Set loading state
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting...';
+      submitBtn.classList.add('loading');
+      submitBtn.innerHTML = '<span class="loading-spinner"></span>Sending...';
       
-      // Prepare data for local storage (text only)
-      const textData = {
-        firstName: formData.get('firstName').trim(),
-        lastName: formData.get('lastName').trim(),
-        handle: formatHandleForStorage(formData.get('handle') || ''),
-        email: formData.get('email').trim(),
-        phone: formData.get('phone').trim(),
-        state: formData.get('state').trim(),
-        dob: formData.get('dob'),
-        consent: true,
-        timestamp: new Date().toISOString()
-      };
+      // Hide any previous success message
+      successMessage.style.display = 'none';
       
-      // Save to local storage
-      saveToLocal(textData);
-      
-      // Submit to Zapier if URL is configured
-      if (ZAP_WEBHOOK_URL) {
-        try {
+      try {
+        // Prepare data for local storage (text only)
+        const textData = {
+          firstName: formData.get('firstName').trim(),
+          lastName: formData.get('lastName').trim(),
+          handle: formatHandleForStorage(formData.get('handle') || ''),
+          email: formData.get('email').trim(),
+          phone: formData.get('phone').trim(),
+          state: formData.get('state').trim(),
+          dob: formData.get('dob'),
+          consent: true,
+          timestamp: new Date().toISOString()
+        };
+        
+        // Save to local storage
+        saveToLocal(textData);
+        
+        // Submit to Zapier if URL is configured
+        if (ZAP_WEBHOOK_URL) {
           // Format handle for Zapier submission
           const handleValue = formatHandleForStorage(formData.get('handle') || '');
           if (handleValue) {
@@ -1454,19 +1521,43 @@
           }
           
           await submitToZapier(formData);
-        } catch (error) {
-          console.error('Webhook submission failed:', error);
-          // Continue with success flow even if webhook fails
         }
+        
+        // Update button to show success temporarily
+        submitBtn.innerHTML = 'Sent ✓';
+        submitBtn.classList.remove('loading');
+        
+        // Show success message with fade-in effect
+        successMessage.style.display = 'flex';
+        successMessage.style.opacity = '0';
+        
+        setTimeout(() => {
+          successMessage.style.transition = 'opacity 0.3s ease';
+          successMessage.style.opacity = '1';
+        }, 50);
+        
+        // Auto-close modal after delay
+        setTimeout(() => {
+          successMessage.style.transition = 'opacity 0.3s ease';
+          successMessage.style.opacity = '0';
+          
+          setTimeout(() => {
+            resetForm();
+            closeModal();
+          }, 300);
+        }, 2500);
+        
+      } catch (error) {
+        console.error('Form submission failed:', error);
+        
+        // Reset button state on error
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Application';
+        
+        // Show error state (you could enhance this with proper error messaging)
+        alert('Submission failed. Please try again.');
       }
-      
-      // Show success message
-      document.getElementById('successMessage').style.display = 'block';
-      
-      setTimeout(() => {
-        resetForm();
-        closeModal();
-      }, 1400);
     }
 
     function saveToLocal(data) {
@@ -1516,10 +1607,14 @@
       // Reset submit button
       const submitBtn = document.getElementById('submitBtn');
       submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
       submitBtn.textContent = 'Submit Application';
       
-      // Hide success message
-      document.getElementById('successMessage').style.display = 'none';
+      // Hide and reset success message
+      const successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'none';
+      successMessage.style.opacity = '1';
+      successMessage.style.transition = '';
       
       clearErrors();
     }
