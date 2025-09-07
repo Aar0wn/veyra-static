@@ -102,8 +102,8 @@
     }
     
     .badge img {
-      height: 140px;
-      width: 140px;
+      height: 280px;
+      width: 280px;
       object-fit: contain;
       filter: drop-shadow(0 0 22px rgba(212,175,55,.55));
       display: block;
@@ -680,8 +680,8 @@
       
       /* Adjust logo size for mobile */
       .badge img {
-        height: 100px;
-        width: 100px;
+        height: 200px;
+        width: 200px;
       }
       
       /* Enhanced mobile close button */
@@ -696,13 +696,32 @@
       .modal-head {
         margin-bottom: 12px;
       }
+      
+      /* Mobile submit button improvements */
+      .submit {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        min-height: 48px;
+        font-size: 17px;
+        padding: 14px 16px;
+        position: sticky;
+        bottom: 0;
+        background: var(--panel);
+        border-top: 1px solid rgba(212,175,55,.2);
+        box-shadow: 0 -4px 12px rgba(0,0,0,.3);
+      }
+      
+      /* Ensure modal has bottom padding for sticky button */
+      .modal {
+        padding-bottom: 80px;
+      }
     }
     
     /* Medium screens */
     @media (max-width: 480px) {
       .badge img {
-        height: 80px;
-        width: 80px;
+        height: 160px;
+        width: 160px;
       }
     }
     
