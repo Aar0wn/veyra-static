@@ -64,6 +64,28 @@
       padding: 0 20px;
     }
     
+    /* Full width containers for larger screens */
+    @media (min-width: 768px) {
+      .container {
+        max-width: 90vw;
+        padding: 0 3vw;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .container {
+        max-width: 85vw;
+        padding: 0 2.5vw;
+      }
+    }
+    
+    @media (min-width: 1440px) {
+      .container {
+        max-width: 80vw;
+        padding: 0 2vw;
+      }
+    }
+    
     /* ===== Hero ===== */
     .hero {
       position: relative;
@@ -186,6 +208,28 @@
       padding: 48px 20px;
     }
     
+    /* Full width section inner containers */
+    @media (min-width: 768px) {
+      .section .inner {
+        max-width: 85vw;
+        padding: 56px 3vw;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .section .inner {
+        max-width: 75vw;
+        padding: 64px 2.5vw;
+      }
+    }
+    
+    @media (min-width: 1440px) {
+      .section .inner {
+        max-width: 70vw;
+        padding: 72px 2vw;
+      }
+    }
+    
     .h3 {
       font-weight: 600;
       font-size: clamp(18px, 4vw, 20px);
@@ -235,6 +279,40 @@
       max-height: 200px;
       opacity: 1;
       margin-top: 8px;
+    }
+    
+    /* Enhanced FAQ layout for larger screens */
+    @media (min-width: 1024px) {
+      .faq-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 48px;
+        align-items: start;
+      }
+      
+      .faq-intro {
+        position: sticky;
+        top: 80px;
+      }
+      
+      .faq-items {
+        /* FAQ items take up more space */
+      }
+      
+      .faq-item {
+        padding: 20px 0;
+      }
+      
+      .faq-q {
+        font-size: 18px;
+        min-height: 48px;
+      }
+      
+      .faq-a {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-top: 12px;
+      }
     }
     
     /* ===== Modal/Overlay ===== */
@@ -758,6 +836,13 @@
       margin: 0 auto;
     }
     
+    /* Full width page container */
+    @media (min-width: 768px) {
+      .page {
+        max-width: none;
+      }
+    }
+    
     /* ===== Responsive adjustments ===== */
     @media (max-width: 767px) {
       .container {
@@ -930,10 +1015,12 @@
     <!-- ===== FAQ ===== -->
     <section class="section">
       <div class="container inner">
-        <div>
-          <div class="h3">FAQ</div>
-          <p class="muted" style="margin-top: 6px;">A few quick answers—reach out after you apply for details.</p>
-          <div>
+        <div class="faq-container">
+          <div class="faq-intro">
+            <div class="h3">FAQ</div>
+            <p class="muted" style="margin-top: 6px;">A few quick answers—reach out after you apply for details.</p>
+          </div>
+          <div class="faq-items">
             <div class="faq-item">
               <button class="faq-q" type="button" onclick="toggleFaq(this)" aria-expanded="false">
                 <span>Who does VEYRA represent?</span>
