@@ -272,6 +272,31 @@
       position: relative;
     }
     
+    /* Full width optimization for tablets and desktop */
+    @media (min-width: 768px) {
+      .modal {
+        max-width: 90vw;
+        width: 90vw;
+        max-height: calc(100vh - 80px);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .modal {
+        max-width: 85vw;
+        width: 85vw;
+        padding: 32px;
+      }
+    }
+    
+    @media (min-width: 1440px) {
+      .modal {
+        max-width: 80vw;
+        width: 80vw;
+        padding: 40px;
+      }
+    }
+    
     /* Custom scrollbar styling */
     .modal::-webkit-scrollbar {
       width: 6px;
@@ -336,9 +361,36 @@
     @media (min-width: 768px) {
       .grid-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
       }
       .grid-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+    }
+    
+    /* Enhanced layout for larger modals */
+    @media (min-width: 1024px) {
+      .grid-2 {
+        gap: 20px;
+      }
+      .grid-3 {
+        gap: 20px;
+      }
+      .grid-4 {
+        gap: 20px;
+      }
+      
+      /* Two-column layout for better space utilization */
+      .form-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
       }
     }
     
@@ -726,6 +778,15 @@
         border-radius: 16px;
       }
       
+      /* Single column layout on mobile */
+      .form-columns {
+        display: block;
+      }
+      
+      .form-section {
+        margin-bottom: 20px;
+      }
+      
       .calendar {
         width: calc(100% - 20px);
         max-width: 300px;
@@ -927,126 +988,143 @@
       <p class="muted" style="margin-top: 6px;">Discreet, selective, results-driven. Tell us a bit about you.</p>
 
       <form id="applicationForm" onsubmit="handleSubmit(event)" style="margin-top: 18px;">
-        <div class="grid grid-2">
-          <div>
-            <label class="txt" for="firstName">First name</label>
-            <input id="firstName" name="firstName" type="text" placeholder="First name" required />
-            <div class="err" id="firstNameError"></div>
-          </div>
-          <div>
-            <label class="txt" for="lastName">Last name</label>
-            <input id="lastName" name="lastName" type="text" placeholder="Last name" required />
-            <div class="err" id="lastNameError"></div>
-          </div>
-        </div>
+        <!-- Two-column layout for larger screens -->
+        <div class="form-columns">
+          <!-- Left Column: Personal Information -->
+          <div class="form-section">
+            <div class="grid grid-2">
+              <div>
+                <label class="txt" for="firstName">First name</label>
+                <input id="firstName" name="firstName" type="text" placeholder="First name" required />
+                <div class="err" id="firstNameError"></div>
+              </div>
+              <div>
+                <label class="txt" for="lastName">Last name</label>
+                <input id="lastName" name="lastName" type="text" placeholder="Last name" required />
+                <div class="err" id="lastNameError"></div>
+              </div>
+            </div>
 
-        <div style="margin-top: 12px;">
-          <label class="txt" for="handle">Instagram / Social Media Handle</label>
-          <input id="handle" name="handle" type="text" placeholder="@username" oninput="formatHandle(this)" />
-          <div class="err" id="handleError"></div>
-        </div>
+            <div style="margin-top: 12px;">
+              <label class="txt" for="handle">Instagram / Social Media Handle</label>
+              <input id="handle" name="handle" type="text" placeholder="@username" oninput="formatHandle(this)" />
+              <div class="err" id="handleError"></div>
+            </div>
 
-        <div class="grid grid-2">
-          <div>
-            <label class="txt" for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required />
-            <div class="err" id="emailError"></div>
-          </div>
-          <div>
-            <label class="txt" for="phone">Phone</label>
-            <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" required />
-            <div class="err" id="phoneError"></div>
-          </div>
-        </div>
+            <div class="grid grid-2">
+              <div>
+                <label class="txt" for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                <div class="err" id="emailError"></div>
+              </div>
+              <div>
+                <label class="txt" for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" required />
+                <div class="err" id="phoneError"></div>
+              </div>
+            </div>
 
-        <div>
-          <label class="txt" for="state">State / Region</label>
-          <input id="state" name="state" type="text" placeholder="State / Region" required />
-          <div class="err" id="stateError"></div>
-        </div>
+            <div>
+              <label class="txt" for="state">State / Region</label>
+              <input id="state" name="state" type="text" placeholder="State / Region" required />
+              <div class="err" id="stateError"></div>
+            </div>
 
-        <div class="date-wrap">
-          <label class="txt" for="dob">Date of birth</label>
-          <div class="date-picker" id="datePicker">
-            <button type="button" class="date-button" id="dateButton" onclick="toggleDatePicker()" aria-haspopup="dialog">
-              <span class="placeholder" id="dateDisplay">YYYY-MM-DD</span>
-              <svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="none" fill="currentColor"></rect>
-                <rect x="3" y="8" width="18" height="4" fill="#000" opacity=".25"></rect>
-                <rect x="7" y="2" width="2" height="4" fill="#000" opacity=".6"></rect>
-                <rect x="15" y="2" width="2" height="4" fill="#000" opacity=".6"></rect>
-              </svg>
-            </button>
-            <div class="calendar" id="calendar" style="display: none;">
-              <div class="cal-head" style="position: relative;">
-                <div class="cal-title" id="calTitle" onclick="toggleYearSelector()">January 2024 ▾</div>
-                <div class="cal-nav">
-                  <button type="button" onclick="changeMonth(-1)" id="prevMonth">‹</button>
-                  <button type="button" onclick="changeMonth(1)" id="nextMonth">›</button>
+            <div class="date-wrap">
+              <label class="txt" for="dob">Date of birth</label>
+              <div class="date-picker" id="datePicker">
+                <button type="button" class="date-button" id="dateButton" onclick="toggleDatePicker()" aria-haspopup="dialog">
+                  <span class="placeholder" id="dateDisplay">YYYY-MM-DD</span>
+                  <svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="none" fill="currentColor"></rect>
+                    <rect x="3" y="8" width="18" height="4" fill="#000" opacity=".25"></rect>
+                    <rect x="7" y="2" width="2" height="4" fill="#000" opacity=".6"></rect>
+                    <rect x="15" y="2" width="2" height="4" fill="#000" opacity=".6"></rect>
+                  </svg>
+                </button>
+                <div class="calendar" id="calendar" style="display: none;">
+                  <div class="cal-head" style="position: relative;">
+                    <div class="cal-title" id="calTitle" onclick="toggleYearSelector()">January 2024 ▾</div>
+                    <div class="cal-nav">
+                      <button type="button" onclick="changeMonth(-1)" id="prevMonth">‹</button>
+                      <button type="button" onclick="changeMonth(1)" id="nextMonth">›</button>
+                    </div>
+                    <div class="year-selector" id="yearSelector"></div>
+                  </div>
+                  <div class="cal-grid" id="calGrid">
+                    <div class="cal-dow">Su</div>
+                    <div class="cal-dow">Mo</div>
+                    <div class="cal-dow">Tu</div>
+                    <div class="cal-dow">We</div>
+                    <div class="cal-dow">Th</div>
+                    <div class="cal-dow">Fr</div>
+                    <div class="cal-dow">Sa</div>
+                  </div>
                 </div>
-                <div class="year-selector" id="yearSelector"></div>
               </div>
-              <div class="cal-grid" id="calGrid">
-                <div class="cal-dow">Su</div>
-                <div class="cal-dow">Mo</div>
-                <div class="cal-dow">Tu</div>
-                <div class="cal-dow">We</div>
-                <div class="cal-dow">Th</div>
-                <div class="cal-dow">Fr</div>
-                <div class="cal-dow">Sa</div>
-              </div>
+              <input type="hidden" id="dob" name="dob" required />
+              <div class="err" id="dobError"></div>
+              <div class="help">Must be 18+</div>
             </div>
           </div>
-          <input type="hidden" id="dob" name="dob" required />
-          <div class="err" id="dobError"></div>
-          <div class="help">Must be 18+</div>
+
+          <!-- Right Column: Media Uploads -->
+          <div class="form-section">
+            <div class="grid grid-3 grid-uploads" style="margin-top: 8px;">
+              <div>
+                <label class="txt" for="headshot1">Headshot 1</label>
+                <div class="upload-wrap">
+                  <button type="button" class="upload-btn">Upload</button>
+                  <input class="file-native" id="headshot1" name="headshot1" type="file" accept="image/jpeg,image/png" onchange="handleFileUpload('headshot1')" required />
+                </div>
+                <div class="err" id="headshot1Error"></div>
+                <img id="headshot1Preview" class="preview" style="display: none;" alt="Headshot 1 preview" />
+              </div>
+              <div>
+                <label class="txt" for="headshot2">Headshot 2</label>
+                <div class="upload-wrap">
+                  <button type="button" class="upload-btn">Upload</button>
+                  <input class="file-native" id="headshot2" name="headshot2" type="file" accept="image/jpeg,image/png" onchange="handleFileUpload('headshot2')" required />
+                </div>
+                <div class="err" id="headshot2Error"></div>
+                <img id="headshot2Preview" class="preview" style="display: none;" alt="Headshot 2 preview" />
+              </div>
+              <div>
+                <label class="txt" for="bodyshot">Bodyshot</label>
+                <div class="upload-wrap">
+                  <button type="button" class="upload-btn">Upload</button>
+                  <input class="file-native" id="bodyshot" name="bodyshot" type="file" accept="image/jpeg,image/png" onchange="handleFileUpload('bodyshot')" required />
+                </div>
+                <div class="err" id="bodyshotError"></div>
+                <img id="bodyshotPreview" class="preview" style="display: none;" alt="Bodyshot preview" />
+              </div>
+            </div>
+            <div class="help" style="text-align: center; margin-top: 12px;">Required: two headshots and one bodyshot (JPG/PNG)</div>
+            
+            <!-- Upload previews section for better organization on larger screens -->
+            <div class="preview-grid" style="margin-top: 16px; display: none;">
+              <!-- Previews will be shown here on larger screens -->
+            </div>
+          </div>
         </div>
 
-        <div class="grid grid-3" style="margin-top: 8px;">
-          <div>
-            <label class="txt" for="headshot1">Headshot 1</label>
-            <div class="upload-wrap">
-              <button type="button" class="upload-btn">Upload</button>
-              <input class="file-native" id="headshot1" name="headshot1" type="file" accept="image/jpeg,image/png" onchange="handleFileUpload('headshot1')" required />
-            </div>
-            <div class="err" id="headshot1Error"></div>
-            <img id="headshot1Preview" class="preview" style="display: none;" alt="Headshot 1 preview" />
-          </div>
-          <div>
-            <label class="txt" for="headshot2">Headshot 2</label>
-            <div class="upload-wrap">
-              <button type="button" class="upload-btn">Upload</button>
-              <input class="file-native" id="headshot2" name="headshot2" type="file" accept="image/jpeg,image/png" onchange="handleFileUpload('headshot2')" required />
-            </div>
-            <div class="err" id="headshot2Error"></div>
-            <img id="headshot2Preview" class="preview" style="display: none;" alt="Headshot 2 preview" />
-          </div>
-          <div>
-            <label class="txt" for="bodyshot">Bodyshot</label>
-            <div class="upload-wrap">
-              <button type="button" class="upload-btn">Upload</button>
-              <input class="file-native" id="bodyshot" name="bodyshot" type="file" accept="image/jpeg,image/png" onchange="handleFileUpload('bodyshot')" required />
-            </div>
-            <div class="err" id="bodyshotError"></div>
-            <img id="bodyshotPreview" class="preview" style="display: none;" alt="Bodyshot preview" />
-          </div>
-        </div>
-        <div class="help" style="text-align: center;">Required: two headshots and one bodyshot (JPG/PNG)</div>
+        <!-- Full-width elements -->
+        <div class="form-footer" style="margin-top: 24px;">
+          <label class="consent">
+            <input type="checkbox" id="consent" name="consent" required />
+            <span>I agree to be contacted by <span style="color: var(--gold);">VEYRA</span> about representation.</span>
+          </label>
+          <div class="err" id="consentError" style="text-align: center;"></div>
 
-        <label class="consent">
-          <input type="checkbox" id="consent" name="consent" required />
-          <span>I agree to be contacted by <span style="color: var(--gold);">VEYRA</span> about representation.</span>
-        </label>
-        <div class="err" id="consentError" style="text-align: center;"></div>
-
-        <button class="submit" type="submit" id="submitBtn">Submit Application</button>
-        <div id="successMessage" class="success-msg" style="display: none;">
-          <div class="success-icon">
-            <svg viewBox="0 0 24 24" fill="none">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
+          <button class="submit" type="submit" id="submitBtn">Submit Application</button>
+          <div id="successMessage" class="success-msg" style="display: none;">
+            <div class="success-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <span>Application received. We'll reach out privately.</span>
           </div>
-          <span>Application received. We'll reach out privately.</span>
         </div>
       </form>
     </div>
