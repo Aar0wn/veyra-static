@@ -657,13 +657,18 @@
         padding: 32px 16px;
       }
       
-      .modal {
-        margin: 0;
-        border-radius: 16px 16px 0 0;
+      /* Mobile modal positioning */
+      .overlay {
+        align-items: flex-start;
+        padding: 0;
+        padding-top: env(safe-area-inset-top, 20px);
       }
       
-      .overlay {
-        padding: 0;
+      .modal {
+        margin: 0;
+        margin-top: 20px;
+        border-radius: 16px 16px 0 0;
+        max-height: calc(100vh - env(safe-area-inset-top, 20px) - 20px);
       }
       
       .calendar {
@@ -677,6 +682,19 @@
       .badge img {
         height: 100px;
         width: 100px;
+      }
+      
+      /* Enhanced mobile close button */
+      .close {
+        min-height: 48px;
+        min-width: 48px;
+        font-size: 20px;
+        padding: 12px;
+      }
+      
+      /* Better modal spacing on mobile */
+      .modal-head {
+        margin-bottom: 12px;
       }
     }
     
