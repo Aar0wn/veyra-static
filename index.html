@@ -922,7 +922,7 @@
       }
     }
     
-    /* ===== Fire and Spark Animations ===== */
+    /* ===== Gradient Tagline Styling ===== */
     .animated-tagline {
       position: relative;
       display: flex;
@@ -933,408 +933,100 @@
     
     .tagline-top {
       font-size: clamp(1.75rem, 7vw, 2.125rem);
-      font-weight: 600;
+      font-weight: 700;
       line-height: 1.2;
-      color: var(--text);
       text-align: center;
       position: relative;
+      background: linear-gradient(90deg, 
+        rgba(100, 100, 100, 0.3) 0%,
+        rgba(150, 150, 150, 0.5) 15%,
+        rgba(200, 200, 200, 0.7) 30%,
+        rgba(233, 228, 216, 0.9) 45%,
+        rgba(255, 215, 0, 1) 65%,
+        rgba(255, 215, 0, 1) 75%,
+        #FFD700 85%,
+        #FFED4E 100%);
+      background-size: 110% 110%;
+      background-position: 0% 50%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmerGold 4s ease-in-out infinite, breathe 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+      transform-origin: center;
     }
     
     .tagline-bottom {
       font-size: clamp(1.75rem, 7vw, 2.125rem);
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--text);
-      margin-top: 8px;
-      position: relative;
-      text-align: center;
-    }
-    
-    /* Trailing dots after spark */
-    .spark-trail {
-      display: inline-block;
-      margin-left: 5px;
-      letter-spacing: 3px;
-      animation: trailFade 3s ease-in-out infinite;
-    }
-    
-    .spark-trail span {
-      display: inline-block;
-      color: var(--gold);
-      opacity: 0;
-      animation: dotPulse 3s ease-in-out infinite;
-    }
-    
-    .spark-trail span:nth-child(1) {
-      animation-delay: 0.2s;
-    }
-    
-    .spark-trail span:nth-child(2) {
-      animation-delay: 0.4s;
-    }
-    
-    .spark-trail span:nth-child(3) {
-      animation-delay: 0.6s;
-    }
-    
-    /* Spark animation on the word 'spark' - WILD VERSION */
-    .spark-word {
-      position: relative;
-      display: inline-block;
-      color: #ffd700;
       font-weight: 700;
-      text-shadow: 
-        0 0 20px rgba(255,215,0,0.9),
-        0 0 40px rgba(255,215,0,0.7),
-        0 0 60px rgba(255,165,0,0.5),
-        0 0 80px rgba(255,140,0,0.3);
-      animation: wildSparkle 1.5s ease-in-out infinite;
-      transform-origin: center;
-    }
-    
-    /* Multiple spark particles */
-    .spark-word::before,
-    .spark-word::after,
-    .spark-particles::before,
-    .spark-particles::after,
-    .spark-particles span:nth-child(1)::before,
-    .spark-particles span:nth-child(2)::before,
-    .spark-particles span:nth-child(3)::before {
-      content: '✦';
-      position: absolute;
-      color: #ffd700;
-      filter: blur(0px);
-      animation: crazySparkFloat 2s ease-in-out infinite;
-    }
-    
-    .spark-word::before {
-      font-size: 0.5em;
-      top: -15px;
-      left: -20px;
-      animation-delay: 0s;
-      animation-duration: 2.5s;
-    }
-    
-    .spark-word::after {
-      font-size: 0.3em;
-      top: -8px;
-      right: -18px;
-      animation-delay: 0.7s;
-      animation-duration: 2.2s;
-    }
-    
-    .spark-particles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-    
-    .spark-particles::before {
-      font-size: 0.4em;
-      top: -20px;
-      left: 50%;
-      animation-delay: 0.3s;
-      animation-duration: 2.8s;
-    }
-    
-    .spark-particles::after {
-      font-size: 0.6em;
-      bottom: -15px;
-      right: -10px;
-      animation-delay: 1s;
-      animation-duration: 2.4s;
-    }
-    
-    .spark-particles span {
-      position: absolute;
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    
-    .spark-particles span:nth-child(1)::before {
-      font-size: 0.35em;
-      top: 5px;
-      left: -25px;
-      animation-delay: 0.5s;
-      animation-duration: 2.6s;
-    }
-    
-    .spark-particles span:nth-child(2)::before {
-      font-size: 0.45em;
-      top: -12px;
-      right: 10px;
-      animation-delay: 1.2s;
-      animation-duration: 2.3s;
-    }
-    
-    .spark-particles span:nth-child(3)::before {
-      font-size: 0.3em;
-      bottom: -10px;
-      left: -15px;
-      animation-delay: 1.5s;
-      animation-duration: 2.7s;
-    }
-    
-    /* Fire animation on the word 'fire' - WILD VERSION */
-    .fire-word {
+      line-height: 1.2;
+      margin-top: 8px;
+      text-align: center;
       position: relative;
-      display: inline-block;
-      font-weight: 900;
       background: linear-gradient(90deg, 
-        #ff0000 0%, 
-        #ff4500 10%, 
-        #ff6b00 20%, 
-        #ffa500 30%, 
-        #ffff00 40%, 
-        #ffa500 50%, 
-        #ff6b00 60%, 
-        #ff4500 70%, 
-        #ff0000 80%, 
-        #cc0000 90%, 
-        #ff0000 100%);
-      background-size: 300% 300%;
+        rgba(100, 100, 100, 0.3) 0%,
+        rgba(150, 100, 100, 0.5) 15%,
+        rgba(200, 100, 100, 0.7) 30%,
+        rgba(255, 100, 50, 0.85) 45%,
+        rgba(255, 69, 0, 1) 60%,
+        rgba(255, 45, 0, 1) 75%,
+        #FF2200 85%,
+        #FF0000 100%);
+      background-size: 110% 110%;
+      background-position: 0% 50%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: wildFireGradient 1s linear infinite;
-      filter: 
-        drop-shadow(0 0 3px rgba(255, 0, 0, 0.9))
-        drop-shadow(0 0 10px rgba(255, 107, 0, 0.8))
-        drop-shadow(0 0 20px rgba(255, 165, 0, 0.6))
-        drop-shadow(0 0 30px rgba(255, 69, 0, 0.4));
-      transform-origin: center bottom;
+      animation: shimmerFire 4s ease-in-out infinite, breathe 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 25px rgba(255, 45, 0, 0.5));
+      transform-origin: center;
     }
     
-    /* Multiple flame layers */
-    .fire-word::before,
-    .fire-word::after,
-    .fire-flames::before,
-    .fire-flames::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -8px;
-      height: 20px;
-      background: linear-gradient(180deg, 
-        rgba(255,69,0,0.8) 0%, 
-        rgba(255,140,0,0.6) 30%, 
-        rgba(255,215,0,0.4) 60%, 
-        transparent 100%);
-      filter: blur(3px);
-      animation: wildFlames 0.5s ease-in-out infinite alternate;
-      transform-origin: bottom center;
-    }
-    
-    .fire-word::before {
-      animation-delay: 0.1s;
-      animation-duration: 0.6s;
-      transform: scaleX(1.1);
-    }
-    
-    .fire-word::after {
-      animation-delay: 0.2s;
-      animation-duration: 0.4s;
-      transform: scaleX(0.9);
-      filter: blur(5px);
-    }
-    
-    .fire-flames {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-    
-    .fire-flames::before {
-      animation-delay: 0.3s;
-      animation-duration: 0.7s;
-      transform: scaleX(1.2) translateY(-2px);
-      filter: blur(4px);
-      height: 15px;
-    }
-    
-    .fire-flames::after {
-      animation-delay: 0.05s;
-      animation-duration: 0.5s;
-      transform: scaleX(0.8) translateY(-4px);
-      filter: blur(6px);
-      height: 25px;
-    }
-    
-    /* Fire embers */
-    .fire-embers {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-    
-    .fire-embers span {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background: #ff6b00;
-      border-radius: 50%;
-      filter: blur(1px);
-      animation: emberFloat 3s ease-in-out infinite;
-    }
-    
-    .fire-embers span:nth-child(1) {
-      left: 20%;
-      bottom: 0;
-      animation-delay: 0s;
-      animation-duration: 2.5s;
-    }
-    
-    .fire-embers span:nth-child(2) {
-      left: 50%;
-      bottom: 0;
-      animation-delay: 0.5s;
-      animation-duration: 3s;
-    }
-    
-    .fire-embers span:nth-child(3) {
-      left: 80%;
-      bottom: 0;
-      animation-delay: 1s;
-      animation-duration: 2.8s;
-    }
-    
-    /* Enhanced animations for wild effects */
-    @keyframes wildSparkle {
+    /* Subtle animations to make text feel alive */
+    @keyframes shimmerGold {
       0%, 100% {
-        text-shadow: 
-          0 0 20px rgba(255,215,0,0.9),
-          0 0 40px rgba(255,215,0,0.7),
-          0 0 60px rgba(255,165,0,0.5),
-          0 0 80px rgba(255,140,0,0.3);
-        transform: scale(1) rotate(0deg);
-      }
-      25% {
-        text-shadow: 
-          0 0 25px rgba(255,215,0,1),
-          0 0 50px rgba(255,215,0,0.9),
-          0 0 70px rgba(255,200,0,0.7),
-          0 0 90px rgba(255,165,0,0.5);
-        transform: scale(1.02) rotate(-1deg);
-      }
-      50% {
-        text-shadow: 
-          0 0 30px rgba(255,255,0,1),
-          0 0 60px rgba(255,215,0,0.9),
-          0 0 80px rgba(255,215,0,0.7),
-          0 0 100px rgba(255,200,0,0.5);
-        transform: scale(1.05) rotate(1deg);
-      }
-      75% {
-        text-shadow: 
-          0 0 25px rgba(255,215,0,1),
-          0 0 45px rgba(255,200,0,0.8),
-          0 0 65px rgba(255,165,0,0.6),
-          0 0 85px rgba(255,140,0,0.4);
-        transform: scale(1.02) rotate(-0.5deg);
-      }
-    }
-    
-    @keyframes crazySparkFloat {
-      0% {
-        transform: translateY(0) translateX(0) scale(1) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      30% {
-        transform: translateY(-30px) translateX(10px) scale(1.5) rotate(180deg);
-        opacity: 1;
-      }
-      50% {
-        transform: translateY(-50px) translateX(-5px) scale(1.2) rotate(360deg);
-        opacity: 0.8;
-      }
-      70% {
-        transform: translateY(-70px) translateX(15px) scale(0.8) rotate(540deg);
-        opacity: 0.5;
-      }
-      100% {
-        transform: translateY(-100px) translateX(0) scale(0.3) rotate(720deg);
-        opacity: 0;
-      }
-    }
-    
-    @keyframes wildFireGradient {
-      0% {
         background-position: 0% 50%;
-      }
-      100% {
-        background-position: 100% 50%;
-      }
-    }
-    
-    @keyframes wildFlames {
-      0% {
-        transform: scaleY(1) translateY(0) skewX(0deg);
-        opacity: 0.8;
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
       }
       25% {
-        transform: scaleY(1.3) translateY(-3px) skewX(-5deg);
-        opacity: 1;
+        background-position: -5% 50%;
+        filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
       }
       50% {
-        transform: scaleY(1.1) translateY(-1px) skewX(3deg);
-        opacity: 0.9;
+        background-position: -10% 50%;
+        filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
       }
       75% {
-        transform: scaleY(1.4) translateY(-4px) skewX(-3deg);
-        opacity: 1;
-      }
-      100% {
-        transform: scaleY(1.2) translateY(-2px) skewX(5deg);
-        opacity: 0.85;
+        background-position: -5% 50%;
+        filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
       }
     }
     
-    @keyframes emberFloat {
-      0% {
-        transform: translateY(0) translateX(0) scale(1);
-        opacity: 1;
-        background: #ff6b00;
-      }
-      20% {
-        transform: translateY(-20px) translateX(5px) scale(1.2);
-        opacity: 1;
-        background: #ffa500;
-      }
-      40% {
-        transform: translateY(-40px) translateX(-3px) scale(0.9);
-        opacity: 0.8;
-        background: #ffff00;
-      }
-      60% {
-        transform: translateY(-60px) translateX(8px) scale(0.7);
-        opacity: 0.6;
-        background: #ffa500;
-      }
-      80% {
-        transform: translateY(-80px) translateX(-5px) scale(0.5);
-        opacity: 0.3;
-        background: #ff4500;
-      }
-      100% {
-        transform: translateY(-100px) translateX(0) scale(0.2);
-        opacity: 0;
-        background: #ff0000;
-      }
-    }
-    
-    @keyframes dotPulse {
+    @keyframes shimmerFire {
       0%, 100% {
-        opacity: 0;
-        transform: scale(0.5);
+        background-position: 0% 50%;
+        filter: drop-shadow(0 0 25px rgba(255, 45, 0, 0.5));
+      }
+      25% {
+        background-position: -5% 50%;
+        filter: drop-shadow(0 0 30px rgba(255, 45, 0, 0.6));
       }
       50% {
-        opacity: 1;
+        background-position: -10% 50%;
+        filter: drop-shadow(0 0 35px rgba(255, 0, 0, 0.7));
+      }
+      75% {
+        background-position: -5% 50%;
+        filter: drop-shadow(0 0 30px rgba(255, 45, 0, 0.6));
+      }
+    }
+    
+    @keyframes breathe {
+      0%, 100% {
         transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
       }
     }
     
@@ -1496,29 +1188,8 @@
             <div class="subbrand">MANAGEMENT AGENCY</div>
           </div>
           <div class="animated-tagline">
-            <div class="tagline-top">
-              Your beauty is the 
-              <span class="spark-word">
-                spark
-                <div class="spark-particles">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </span><span class="spark-trail"><span>.</span><span>.</span><span>.</span></span>
-            </div>
-            <div class="tagline-bottom">
-              we build the 
-              <span class="fire-word">
-                fire
-                <div class="fire-flames"></div>
-                <div class="fire-embers">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </span>
-            </div>
+            <div class="tagline-top">Your beauty is the spark</div>
+            <div class="tagline-bottom">we build the fire</div>
           </div>
           <button class="cta" onclick="openModal()" aria-label="Apply Now">
             Apply Now
