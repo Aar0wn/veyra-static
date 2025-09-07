@@ -500,10 +500,10 @@
     
     .calendar {
       position: absolute;
-      top: 100%;
+      bottom: 100%;
       left: 0;
       right: 0;
-      margin-top: 8px;
+      margin-bottom: 8px;
       width: 320px;
       max-width: calc(100vw - 40px);
       background: var(--panel);
@@ -512,7 +512,7 @@
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
       z-index: 1001;
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(10px);
       transition: opacity 0.2s ease, transform 0.2s ease;
     }
     
@@ -730,7 +730,7 @@
         width: calc(100% - 20px);
         max-width: 300px;
         left: 50%;
-        transform: translateX(-50%) translateY(-10px);
+        transform: translateX(-50%) translateY(10px);
       }
       
       .calendar.show {
