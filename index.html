@@ -938,16 +938,19 @@
       text-align: center;
       position: relative;
       background: linear-gradient(90deg, 
-        rgba(50, 50, 50, 0.15) 0%,
-        rgba(50, 50, 50, 0.15) 70%,
-        rgba(100, 100, 100, 0.3) 75%,
-        rgba(212, 175, 55, 0.7) 80%,
-        rgba(255, 215, 0, 1) 85%,
+        rgba(200, 200, 200, 0.6) 0%,
+        rgba(200, 200, 200, 0.65) 20%,
+        rgba(200, 200, 200, 0.7) 40%,
+        rgba(200, 180, 150, 0.75) 60%,
+        rgba(212, 175, 55, 0.85) 70%,
+        rgba(255, 215, 0, 0.95) 80%,
         #FFD700 90%,
         #FFED4E 100%);
+      background-size: 200% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: gradientSlide 6s ease-in-out infinite;
       filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
     }
     
@@ -959,17 +962,19 @@
       text-align: center;
       position: relative;
       background: linear-gradient(90deg, 
-        rgba(50, 50, 50, 0.15) 0%,
-        rgba(50, 50, 50, 0.15) 60%,
-        rgba(100, 50, 50, 0.3) 65%,
-        rgba(255, 100, 30, 0.7) 70%,
-        rgba(255, 69, 0, 1) 75%,
-        rgba(255, 45, 0, 1) 80%,
+        rgba(200, 200, 200, 0.6) 0%,
+        rgba(200, 180, 180, 0.65) 20%,
+        rgba(200, 160, 160, 0.7) 40%,
+        rgba(220, 140, 120, 0.75) 55%,
+        rgba(255, 100, 50, 0.85) 65%,
+        rgba(255, 69, 0, 0.95) 75%,
         #FF2200 85%,
         #FF0000 100%);
+      background-size: 200% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: gradientSlide 6s ease-in-out infinite;
       filter: drop-shadow(0 0 20px rgba(255, 45, 0, 0.4));
     }
     
@@ -984,6 +989,16 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+    
+    /* Gradient animation */
+    @keyframes gradientSlide {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
     }
     
     /* ===== Responsive adjustments ===== */
