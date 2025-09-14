@@ -103,7 +103,7 @@
       inset: 0;
       z-index: -2;
       background: url('./public/model.png') center/cover no-repeat;
-      opacity: .78;
+      opacity: .90;
       filter: saturate(105%);
     }
     
@@ -938,16 +938,16 @@
       text-align: center;
       position: relative;
       background: linear-gradient(90deg, 
-        rgba(30, 30, 30, 0.3) 0%,      /* Very dark */
-        rgba(40, 40, 40, 0.4) 10%,     /* Dark */
-        rgba(60, 60, 60, 0.5) 20%,
-        rgba(80, 80, 80, 0.6) 30%,
-        rgba(100, 100, 100, 0.7) 40%,
-        rgba(120, 120, 120, 0.8) 50%,  /* Getting lighter */
-        rgba(140, 140, 140, 0.9) 58%,
-        rgba(150, 150, 145, 0.95) 61%, /* Super subtle start */
-        rgba(155, 155, 145, 0.97) 63%, /* Gradual */
-        rgba(160, 160, 145, 1) 65%,    /* Through 'the' */
+        rgba(30, 30, 30, 0.45) 0%,      /* Very dark - increased from 0.3 to 0.45 */
+        rgba(40, 40, 40, 0.55) 10%,     /* Dark - increased from 0.4 to 0.55 */
+        rgba(60, 60, 60, 0.65) 20%,     /* increased from 0.5 to 0.65 */
+        rgba(80, 80, 80, 0.75) 30%,     /* increased from 0.6 to 0.75 */
+        rgba(100, 100, 100, 0.85) 40%,  /* increased from 0.7 to 0.85 */
+        rgba(120, 120, 120, 0.95) 50%,  /* Getting lighter - increased from 0.8 to 0.95 */
+        rgba(140, 140, 140, 1) 58%,     /* increased from 0.9 to 1 */
+        rgba(150, 150, 145, 1) 61%,     /* Super subtle start - increased from 0.95 to 1 */
+        rgba(155, 155, 145, 1) 63%,     /* Gradual - increased from 0.97 to 1 */
+        rgba(160, 160, 145, 1) 65%,     /* Through 'the' */
         rgba(165, 165, 140, 1) 66.5%,  
         rgba(170, 168, 135, 1) 68%,    
         rgba(178, 172, 120, 1) 69.5%,  /* Very gradual build */
@@ -973,24 +973,24 @@
       text-align: center;
       position: relative;
       background: linear-gradient(90deg, 
-        rgba(30, 30, 30, 0.3) 0%,      /* Very dark */
-        rgba(40, 40, 40, 0.4) 10%,     /* Dark */
-        rgba(60, 60, 60, 0.5) 20%,
-        rgba(80, 80, 80, 0.6) 30%,
-        rgba(100, 100, 100, 0.7) 49%,
-        rgba(120, 120, 120, 0.8) 56%,  /* Getting lighter */
-        rgba(140, 140, 140, 0.9) 62%,
-        rgba(155, 155, 155, 1) 71%,    /* Pure grey through 'the' */
-        rgba(160, 160, 160, 1) 76%,    /* Still grey through E */
-        rgba(165, 162, 160, 1) 65%,    /* Tiny hint after 'the' */
-        rgba(170, 160, 155, 1) 67%,    /* Very subtle warm */
-        rgba(185, 155, 145, 1) 68.5%,  /* Gradual warm build */
-        rgba(210, 140, 120, 1) 70%,    /* Approaching F */
-        rgba(235, 115, 75, 1) 71.5%,   /* Smooth transition */
-        rgba(255, 100, 50, 1) 73%,     /* Fire color at 'F' */
+        rgba(30, 30, 30, 0.45) 0%,      /* Very dark - increased from 0.3 to 0.45 */
+        rgba(40, 40, 40, 0.55) 10%,     /* Dark - increased from 0.4 to 0.55 */
+        rgba(60, 60, 60, 0.65) 20%,     /* increased from 0.5 to 0.65 */
+        rgba(80, 80, 80, 0.75) 30%,     /* increased from 0.6 to 0.75 */
+        rgba(100, 100, 100, 0.85) 49%,  /* increased from 0.7 to 0.85 */
+        rgba(120, 120, 120, 0.95) 56%,  /* Getting lighter - increased from 0.8 to 0.95 */
+        rgba(140, 140, 140, 1) 62%,     /* increased from 0.9 to 1 */
+        rgba(155, 155, 155, 1) 71%,     /* Pure grey through 'the' */
+        rgba(160, 160, 160, 1) 76%,     /* Still grey through E */
+        rgba(165, 162, 160, 1) 65%,     /* Tiny hint after 'the' */
+        rgba(170, 160, 155, 1) 67%,     /* Very subtle warm */
+        rgba(185, 155, 145, 1) 68.5%,   /* Gradual warm build */
+        rgba(210, 140, 120, 1) 70%,     /* Approaching F */
+        rgba(235, 115, 75, 1) 71.5%,    /* Smooth transition */
+        rgba(255, 100, 50, 1) 73%,      /* Fire color at 'F' */
         rgba(255, 85, 25, 1) 74.5%,    
-        rgba(255, 69, 0, 1) 76%,       /* Bright fire through word */
-        #FF2200 80%,                   /* Glowing red */
+        rgba(255, 69, 0, 1) 76%,        /* Bright fire through word */
+        #FF2200 80%,                    /* Glowing red */
         #FF0000 85%,
         #FF4500 100%);
       -webkit-background-clip: text;
